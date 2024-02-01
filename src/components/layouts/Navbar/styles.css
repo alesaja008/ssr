@@ -1,0 +1,127 @@
+.bg__navbar{
+    background-color: #E30613;
+}
+.navbar-nav li a {
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.dropdown-menu.show a {
+    color: black;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.dropdown-menu.show {
+    border: none;
+}
+
+
+
+.bg-red_custom {
+    background: #E30613;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgb(255 255 255);
+}
+
+.nav-link {
+    margin: 0 10px 0 10px;
+    font-weight: 400;
+    color: #fff;
+    font-size: 14px;
+    line-height: 24px;
+    padding-right: 0.9rem;
+    padding-left: 0.9rem;
+    position: relative;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-transform: capitalize;
+    font-family: Inter,sans-serif;
+}
+
+
+.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
+    color: rgb(255 255 255 / 90%) !important;
+    font-weight: bold !important;
+}
+
+.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
+    color: rgb(255 255 255);
+    font-weight: bold !important;
+}
+
+.dropdown-menu.show a {
+    color: black;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.3;
+    font-family: Inter,sans-serif;
+}
+
+.dropdown-menu.show {
+    box-shadow: 0 4px 16px rgb(56 46 44 / 8%);
+    background: #fff;
+    border-radius: 10px;
+}
+
+
+.dropdown-toggle::after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #fcfdfe;
+    border-radius: 100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 3px;
+    opacity: 0;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    text-decoration: none;
+    background-color: #ececec  !important;
+}
+
+/* Add this CSS to your stylesheet */
+/* Adjust styles as needed for your design */
+
+.coodiv-dropdown-header {
+    display: none;
+    position: absolute;
+    background-color: #fff; /* Background color for the dropdown */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Add box shadow for a nice effect */
+    z-index: 1;
+  }
+  
+  .nav-item:hover .coodiv-dropdown-header {
+    display: block; /* Show the dropdown when the parent nav item is hovered */
+  }
+  
+  .web-hosting-menu-header {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .web-hosting-menu-header li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Add a border between dropdown items */
+  }
+  
+  .web-hosting-menu-header li:hover {
+    background-color: #f9f9f9; /* Background color for the hovered dropdown item */
+  }
+  
+
+ 

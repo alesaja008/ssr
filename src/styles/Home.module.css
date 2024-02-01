@@ -1,0 +1,415 @@
+ 
+ /* compare commponent */
+
+@import url('https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,400;0,500;0,600;1,700&display=swap');
+
+
+
+@media (min-width: 320px) { 
+    .imageSlide {
+        border-radius: 15px;
+        height: 250px;
+    }
+    .arrowLeft {
+        left: 7rem;
+        top: 15rem;
+        position: absolute;
+    }
+    .arrowRight {
+        right: 0rem;
+        top: 15rem;
+        position: absolute;
+    }
+    .arrowTarget {
+        right: 0;
+        top: -4rem;
+        position: absolute;
+        
+    }
+    .py-15{
+        padding-top: 0rem!important;
+        padding-bottom: 0rem!important;
+    }
+    .arrow-title {
+        display: block;
+        position: relative;
+        left: -2rem;
+        font-family: 'Mali', cursive;
+        font-size: 20px;
+        color: #E30613;
+        -webkit-transform: rotate(-10deg);
+        transform: rotate(-10deg);
+        font-weight: 700;
+    }
+    
+ }
+
+ @media (min-width: 576px) { 
+    .imageSlide {
+        border-radius: 15px;
+        height: 500px;
+    }
+  }
+
+ @media (min-width: 768px) { 
+    .imageSlide {
+        border-radius: 15px;
+        height: 300px;
+    }
+    .arrowLeft {
+        left: 5rem;
+        top: 18rem;
+        position: absolute;
+    }
+    .arrowRight {
+        right: -2rem;
+        top: 18rem;
+        position: absolute;
+    }
+    .arrowTarget {
+        right: -1.5rem;
+        top: 3rem;
+        position: absolute;
+        z-index: 99;
+    }
+    
+.arrow-title {
+    display: block;
+    position: relative;
+    left: -1rem;
+    font-family: 'Mali', cursive;
+    font-size: 20px;
+    color: #E30613;
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+    font-weight: 700;
+}
+    
+  }
+
+
+@media (min-width: 992px) { 
+    .imageSlide {
+        border-radius: 15px;
+        height: 500px;
+    }
+    
+.arrow-title {
+    display: block;
+    position: relative;
+    left: -1rem;
+    font-family: 'Mali', cursive;
+    font-size: 20px;
+    color: #E30613;
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+    font-weight: 700;
+}
+ }
+
+
+@media (min-width: 1200px) { 
+    .imageSlide {
+        border-radius: 15px;
+        height: 300px;
+    }
+    .arrowLeft {
+        left: 10rem;
+        top: 18rem;
+        position: absolute;
+    }
+    .arrowRight {
+        right: 5rem;
+        top: 18rem;
+        position: absolute;
+    }
+    .arrowTarget {
+        right: -2rem;
+        top: -0rem;
+        position: absolute;
+    }
+    
+.arrow-title {
+    display: block;
+    position: relative;
+    left: -1rem;
+    font-family: 'Mali', cursive;
+    font-size: 20px;
+    color: #E30613;
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+    font-weight: 700;
+}
+    
+ }
+
+
+ 
+
+span.ux_title {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.dragTitle{
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* compare commponent */
+ /* sliderClient */
+
+ @-webkit-keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-250px * 7));
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-250px * 7));
+  }
+}
+
+@media (max-width: 1200px) {
+  .slider {
+    width: none;
+  }
+}
+.slider {
+  background: white;
+  height: 50px;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+
+}
+.slider::before, .slider::after {
+  background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
+  content: "";
+  height: 100px;
+  position: absolute;
+  width: 200px;
+  z-index: 2;
+}
+.slider::after {
+  right: 0;
+  top: 0;
+  transform: rotateZ(180deg);
+}
+.slider::before {
+  left: 0;
+  top: 0;
+}
+.slider .slidetrack {
+  -webkit-animation: scroll 40s linear infinite;
+          animation: scroll 40s linear infinite;
+  display: flex;
+  width: calc(250px * 14);
+}
+.img__partner {
+  height: 50px;
+  object-fit: cover;
+  width: 100px;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  opacity: 50%;
+}
+
+
+@media (min-width: 320px) {
+
+.slider::before, .slider::after {
+    background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
+    content: "";
+    height: 50px;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+}
+}
+ /* batas */
+
+.text__loop {
+  color: red;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+
+/* batas */
+
+
+.retailCorporate {
+  padding: 4px;
+  margin-bottom: 30px;
+  border-radius: 50px;
+  position: relative;
+}
+
+
+.showContent{
+  display: block;
+}
+
+.content{
+  display: none;
+}
+
+.sendCTA {
+  text-align: left;
+}
+
+
+.serviceImage img {
+  width: 50%;
+  height: auto;
+}
+
+.categoryIconBlog{
+  background-color: #e9f9f2;
+  padding: 3px 10px;
+  color: #198754;
+  font-size: 12px;
+  border-radius: 50px;
+  position: fixed;
+  top: 8.7rem;
+  /* border: 1px solid #198754; */
+  left: 1rem;
+}
+.categoryIconOP{
+  background-color: #e2e0ff;
+  padding: 3px 10px;
+  color: #0b02b1;
+  font-size: 12px;
+  border-radius: 50px;
+  position: fixed;
+  top: 8.7rem;
+  left: 1rem;
+}
+.categoryIconAward{
+  background-color: #fdf0cd;
+    padding: 3px 10px;
+    color: #d29100;
+    font-size: 12px;
+    border-radius: 50px;
+    position: fixed;
+    top: 8.7rem;
+    left: 1rem;
+}
+
+a.classCard:hover{
+color:black;
+text-decoration: none;
+}
+
+.classCard {
+  background: #fff;
+  box-shadow: rgba(11, 43, 158, 0.15) 0px 6px 20px -6px;
+  border-radius: 16px;
+  border: none;
+  margin: 5px;
+}
+
+.btnDetails{
+  font-size: 13px;
+  color: red;
+}
+
+.roundEclipse {
+  position: absolute;
+  left: 0;
+  width: 34%;
+  height: 300px;
+}
+.roundEclipse2 {
+  position: absolute;
+  left: 0;
+  width: 20%;
+  height: 500px;
+  top: 115rem;
+  z-index: -1;
+}
+.roundEclipse3 {
+  position: absolute;
+  left: auto;
+  width: 20%;
+  right: 0rem;
+  height: 500px;
+  z-index: -1;
+  top: 195rem;
+}
+
+
+
+/* card testimonial */
+
+.testimonial {
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  padding: 40px 25px 25px;
+  flex-grow: 1;
+  flex-basis: 280px;
+  max-width: 360px;
+  position: relative;
+}
+.testimonialText {
+  font-weight: normal;
+  font-size: 0.875rem;
+  line-height: 21px;
+  margin-bottom: 1.5625rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+.testimonialJob {
+  font-weight: normal;
+  font-size: 0.5rem;
+  line-height: 10px;
+  letter-spacing: 0.5px;
+}
+.testimonialName {
+  font-weight: bold;
+  font-size: 0.625rem;
+  line-height: 12px;
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+}
+.testimonialImg {
+  display: inline-block;
+  width: 30px;
+  margin-right: 10px;
+}
+.testimonialImg img {
+  vertical-align: bottom;
+  border-radius: 50%;
+  width: 100%;
+}
+.testimonialInfo {
+  display: inline-block;
+}
+
+.bgBack:after{
+  position: absolute;
+  bottom: 73rem;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background-image: url(https://bintangsempurna.co.id/testing/wbs/img/img-bs/konten_page/home-elips-bg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  content: "";
+  z-index: -1;
+}
+
+.bgBack{
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
