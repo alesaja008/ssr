@@ -93,7 +93,9 @@ const Footer = () => {
         </div>
         <div className=" row justify-content-between footer-area-under">
           <div className="col-md col-12 d-flex align-items-center">
-            <Image className="footer-logo-blue" src={logoFooter} alt="" />
+            <Link href="/">
+              <Image className="footer-logo-blue" src={logoFooter} alt="" />
+            </Link>
             <div className="footer-social-icons">
               <Link
                 Link="link"
