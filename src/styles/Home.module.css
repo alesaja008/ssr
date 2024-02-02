@@ -16,14 +16,14 @@
         position: absolute;
     }
     .arrowRight {
-        right: 0rem;
-        top: 15rem;
-        position: absolute;
+      right: 4rem;
+      top: 15rem;
+      position: absolute;
     }
     .arrowTarget {
-        right: 0;
-        top: -4rem;
-        position: absolute;
+      right: 12px;
+      top: -3rem;
+      position: absolute;
         
     }
     .py-15{
