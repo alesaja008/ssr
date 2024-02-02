@@ -36,4 +36,3 @@ app.prepare().then(() => {
   })
 })
 
-// "start": "NODE_ENV=production node server.js",
