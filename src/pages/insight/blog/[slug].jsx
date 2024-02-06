@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import { FaAngleRight } from "react-icons/fa6";
 import { useRouter } from "next/router";
 import { Link } from "next/link";
+import BlogSlider from "@/components/elements/AllSlider/SliderBlog";
 
 const BlogsDetails = () => {
   const query = useRouter();
-  // const router = useRouter();
-  // const { id } = router.query;
 
   return (
     <>
@@ -37,9 +36,13 @@ const BlogsDetails = () => {
                 </div>
               </div>
 
-              <h2 className="artikel-detail_tittle text-left">
-                Membership Untung Lebih Banyak, Pelanggan Makin Luas
-              </h2>
+              <div className="d-flex flex-row ">
+                <div className="p-2 text-Published">
+                  <h2 className="artikel-detail_tittle text-left">
+                    Membership Untung Lebih Banyak, Pelanggan Makin Luas
+                  </h2>
+                </div>
+              </div>
 
               <div className="d-flex flex-row mb-3">
                 <div className="p-2 text-Published">
@@ -109,6 +112,11 @@ const BlogsDetails = () => {
                         Botol Minum Tumbler: Souvenir Populer Bisnis, Sudah
                         Punya Belum?
                       </h2>
+                      <div className="d-flex flex-row mb-3">
+                        <div className="p-2 text-Published">
+                          Published on 20 Juli 2023
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -118,6 +126,17 @@ const BlogsDetails = () => {
                 Temukan berdasarkan topik
               </h2>
               <hr />
+              <div className="row mb-3">
+                <div class="d-flex align-content-stretch flex-wrap">
+                  <div className="TopikCategory">Inspiration</div>
+                  <div className="TopikCategory">Design Ideas</div>
+                  <div className="TopikCategory">Marketing & Promotion</div>
+                  <div className="TopikCategory">Whats New</div>
+                  <div className="TopikCategory">Tips n Trik</div>
+                  <div className="TopikCategory">Print Knowledge</div>
+                </div>
+              </div>
+              {/* batas */}
             </div>
           </div>
         </div>
@@ -134,6 +153,8 @@ const BlogsDetails = () => {
           </div>
         </div>
       </section>
+
+      <BlogSlider />
     </>
   );
 };

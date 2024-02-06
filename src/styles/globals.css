@@ -7263,6 +7263,16 @@
    
    }
    
+
+   @media (min-width: 320px) {
+    .content-img-detail {
+      object-fit: cover;
+      border-radius: 15px;
+      width: 100%;
+      height: auto;
+  }
+  
+   }
    
    
    
@@ -7282,10 +7292,6 @@
      .content-img-detail {
       object-fit: cover;
       object-position: 50% 50%;
-      overflow: hidden;
-      margin: auto;
-      min-height: 100%;
-      min-width: 100%;
       border-radius: 15px;
       height: auto;
       width: 100%;
@@ -13529,6 +13535,8 @@
      font-weight: 600;
  }
  }
+
+
  
  @media (min-width: 320px) {
 
@@ -13549,11 +13557,7 @@
      margin: 0 auto;
    }
  
-   .content-img-detail {
-     object-fit: cover;
-     border-radius: 15px;
-     width: 100%;
- }
+
  
  .content_text_author_description_p {
    font-size: 15px;
@@ -13762,15 +13766,23 @@ button.btn-option.btn.btn-primary{
   margin: 3px;
 }
 
+.TopikCategory {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 15px;
+  color: #ffffff;
+  background-color: #ff0000;
+  cursor: pointer;
+  word-break: break-word;
+  margin: 3px;
+}
+
 .newUpdate{
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
   border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
 }
 
 .cardRelease {
@@ -13998,4 +14010,5 @@ transform-origin: top center;
 
 .fab-wheel img {
   width: 100%;
+  height: auto;
 }

@@ -67,17 +67,17 @@ export const blogSlice = createSlice({
       }),
 
   // details blogs handle
-  //   .addCase(blogSlider.getDetail.pending, (state) => {
-  //     state.loading = true;
-  //   })
-  //   .addCase(blogSlider.getDetail.fulfilled, (state, action) => {
-  //     state.data = action.payload;
-  //     state.loading = false;
-  //   })
-  //   .addCase(blogSlider.getDetail.rejected, (state, action) => {
-  //     state.loading = false;
-  //     state.error = action.payload;
-  //   }),
+  // .addCase(blogSlider.getDetail.pending, (state) => {
+  //   state.loading = true;
+  // })
+  // .addCase(blogSlider.getDetail.fulfilled, (state, action) => {
+  //   state.data = action.payload;
+  //   state.loading = false;
+  // })
+  // .addCase(blogSlider.getDetail.rejected, (state, action) => {
+  //   state.loading = false;
+  //   state.error = action.payload;
+  // }),
 });
 
 export default blogSlice.reducer;

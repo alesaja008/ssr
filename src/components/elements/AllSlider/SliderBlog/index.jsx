@@ -7,6 +7,10 @@ import { getBlogSlider } from "@/store/product/Services";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Link from "next/link";
 import style from "@/styles/Home.module.css";
+// Import Swiper styles
+// import "swiper/css";
+// import "swiper/css/navigation";
+// import "react-lazy-load-image-component/src/effects/blur.css";
 
 const BlogSlider = () => {
   const { entities, loading } = useSelector((state) => state.sliderBlog);

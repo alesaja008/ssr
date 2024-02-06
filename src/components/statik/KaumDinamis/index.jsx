@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import LogoOp from "../../../assets/svg/icon-op.svg";
 import Image from "next/image";
 import SliderProductOp from "@/components/elements/AllSlider/SliderProductOp";
+import Link from "next/link";
 
 const KaumDinamis = () => {
   return (
@@ -38,12 +39,12 @@ const KaumDinamis = () => {
                 </div>
               </div>
               <p className="text-left">
-                <a
-                  href="https://onlineprint.co.id/"
+                <Link
+                  href="/product"
                   className="btn coodiv-text-11 mt-10 rounded-pill"
                 >
                   Lihat Selengkapnya
-                </a>
+                </Link>
               </p>
             </Col>
             <Col lg={6} md={6} sm={12}>

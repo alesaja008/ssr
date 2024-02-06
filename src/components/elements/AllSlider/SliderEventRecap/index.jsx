@@ -15,7 +15,7 @@ import Link from "next/link";
 import style from "@/styles/Home.module.css";
 
 // batas
-import { Container, Card, Row } from "react-bootstrap";
+import { Container, Card } from "react-bootstrap";
 import { getEventRecap } from "@/store/product/Services";
 
 const SliderEventRecap = () => {
@@ -42,8 +42,7 @@ const SliderEventRecap = () => {
           <Card
             as={Link}
             className={style.classCard}
-            href={data.attributes.slug}
-            // onClick={() => blogDetail(data.id, data.attributes.slug)}
+            href={`/events/event-recap/${data.id}`}
             style={{ cursor: "pointer" }}
           >
             <LazyLoadImage

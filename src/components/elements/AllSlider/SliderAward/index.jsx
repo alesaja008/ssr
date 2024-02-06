@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Navigation } from "swiper/modules";
-import { Container, Row, Card } from "react-bootstrap";
+import { Container, Card } from "react-bootstrap";
 import Link from "next/link";
 import { getAwards } from "@/store/product/Services";
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -33,7 +33,10 @@ const SliderAward = () => {
   const baseUrl = "https://testrapi.bintangsempurna.co.id/";
 
   const renderAwards = () => {
-    return entities.map((data) => {
+    const sortedEntities = entities.slice().sort((a, b) => b.id - a.id);
+    const slicedEntities = sortedEntities.slice(0, 10);
+
+    return slicedEntities.map((data) => {
       return (
         <SwiperSlide key={data.id}>
           <Card
