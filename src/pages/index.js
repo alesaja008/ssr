@@ -22,22 +22,42 @@ ReactGA.send({ hitType: "pageview", page: "/" });
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export default function Home(props) {
+  // console.log("Props", props);
   return (
     <>
-      <MetaHome />
-      <SliderHero />
-      <SliderClient />
-      <TemukanHome />
-      <KaumDinamis />
-      <StoreBisnis />
-      <Perjalanan />
-      <Layanan />
-      <SliderAward />
-      <MemberApps />
-      <SliderTestimonial />
-      <SliderEventRecap />
-      <BlogSlider />
+      <div>
+        <MetaHome />
+        <SliderHero />
+        <SliderClient />
+        <TemukanHome />
+        <KaumDinamis />
+        <StoreBisnis />
+        <Perjalanan />
+        <Layanan />
+        <SliderAward />
+        <MemberApps />
+        <SliderTestimonial />
+        <SliderEventRecap />
+        <BlogSlider />
+        {props.data.map((data) => (
+          <li key={data.id}>{data.attributes.title}</li>
+        ))}
+      </div>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(
+    "https://testrapi.bintangsempurna.co.id/api/blogs?populate=*"
+  );
+  const response = await res.json();
+  // console.log(response);
+
+  return {
+    props: {
+      data: response.data,
+    },
+  };
 }

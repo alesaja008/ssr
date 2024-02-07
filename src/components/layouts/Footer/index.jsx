@@ -98,7 +98,6 @@ const Footer = () => {
             </Link>
             <div className="footer-social-icons">
               <Link
-                Link="link"
                 className="icon-social"
                 target="_blank"
                 href="https://www.facebook.com/bintangsempurna/"

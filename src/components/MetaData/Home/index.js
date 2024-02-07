@@ -18,7 +18,7 @@ const MetaHome = () => {
           href="https://bintangsempurna.co.id/ "
           data-rh="true"
         ></link>
-        <meta charset="UTF-8" />
+
         <meta
           name="viewport"
           content="initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=no, width=device-width"
@@ -73,21 +73,6 @@ const MetaHome = () => {
           content="https://testrapi.bintangsempurna.co.id/uploads/Preview_f266a66436.jpg"
         />
 
-        <link
-          itemprop="thumbnailUrl"
-          href="https://testrapi.bintangsempurna.co.id/uploads/Preview_f266a66436.jpg"
-        />
-        <span
-          itemprop="thumbnail"
-          itemscope
-          itemtype="http://schema.org/ImageObject"
-        >
-          <link
-            itemprop="url"
-            href="https://testrapi.bintangsempurna.co.id/uploads/Preview_f266a66436.jpg"
-          />
-        </span>
-
         {/* google */}
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
@@ -98,8 +83,7 @@ const MetaHome = () => {
         <meta name="google" content="nositelinkssearchbox" />
         <meta name="googlebot" content="notranslate" />
         <meta name="google" content="nopagereadaloud" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta charset="utf-8" />
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
     </>

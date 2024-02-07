@@ -1,13 +1,31 @@
-import React, { useState, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+// import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import { FaAngleRight } from "react-icons/fa6";
-import { useRouter } from "next/router";
-import { Link } from "next/link";
+// import { useRouter } from "next/router";
+// import { Link } from "next/link";
 import BlogSlider from "@/components/elements/AllSlider/SliderBlog";
 
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { getDetail } from "@/store/product/Services";
+
 const BlogsDetails = () => {
-  const query = useRouter();
+  // const query = useRouter();
+
+  // const navigate = useNavigate();
+  // const location = useLocation();
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { data, loading } = useSelector((state) => state.sliderBlog);
+
+  const fectDetailBlog = async (data) => {
+    await dispatch(getDetail(data));
+  };
+
+  useEffect(() => {
+    fectDetailBlog(id);
+  }, [id]);
 
   return (
     <>
@@ -39,7 +57,7 @@ const BlogsDetails = () => {
               <div className="d-flex flex-row ">
                 <div className="p-2 text-Published">
                   <h2 className="artikel-detail_tittle text-left">
-                    Membership Untung Lebih Banyak, Pelanggan Makin Luas
+                    {data.attributes.title}
                   </h2>
                 </div>
               </div>
@@ -51,7 +69,7 @@ const BlogsDetails = () => {
               </div>
 
               <div className="row mb-3">
-                <div class="d-flex align-content-stretch flex-wrap">
+                <div className="d-flex align-content-stretch flex-wrap">
                   <div className="HastagCategory">#Inspiration</div>
                   <div className="HastagCategory">#Design Ideas</div>
                   <div className="HastagCategory">#Marketing & Promotion</div>
@@ -97,8 +115,8 @@ const BlogsDetails = () => {
                 <hr />
                 {/* batas */}
                 <div className="cardRelease mb-3">
-                  <div class="d-flex align-items-center m-3">
-                    <div class="flex-shrink-0">
+                  <div className="d-flex align-items-center m-3">
+                    <div className="flex-shrink-0">
                       <Image
                         className="newUpdate"
                         src="https://testrapi.bintangsempurna.co.id/uploads/small_TUMBLER_b02d48a137.png"
@@ -107,7 +125,7 @@ const BlogsDetails = () => {
                         height={100}
                       />
                     </div>
-                    <div class="flex-grow-1 ms-3 text-left">
+                    <div className="flex-grow-1 ms-3 text-left">
                       <h2 className=" text_news">
                         Botol Minum Tumbler: Souvenir Populer Bisnis, Sudah
                         Punya Belum?
@@ -127,7 +145,7 @@ const BlogsDetails = () => {
               </h2>
               <hr />
               <div className="row mb-3">
-                <div class="d-flex align-content-stretch flex-wrap">
+                <div className="d-flex align-content-stretch flex-wrap">
                   <div className="TopikCategory">Inspiration</div>
                   <div className="TopikCategory">Design Ideas</div>
                   <div className="TopikCategory">Marketing & Promotion</div>
