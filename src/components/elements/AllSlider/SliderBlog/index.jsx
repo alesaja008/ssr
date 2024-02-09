@@ -1,76 +1,27 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { Container, Card } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { getBlogSlider } from "@/store/product/Services";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Link from "next/link";
 import style from "@/styles/Home.module.css";
+import Image from "next/image";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import api from "@/pages/api";
 
-export async function getServerSideProps() {
-  const res = await fetch(`${api}` + "blogs?populate=*");
-  const response = await res.json();
-  console.log(response);
+import { fetcher } from "@/lib/api";
+import useSWR from "swr";
 
-  return {
-    props: {
-      data: response.data,
-    },
-  };
-}
+const SliderBlog = ({ blogs }) => {
+  console.log(blogs);
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/blogs`, fetcher, {
+    fallbackData: blogs,
+  });
 
-const BlogSlider = (props) => {
-  console.log(props);
-
-  // const baseUrl = "https://testrapi.bintangsempurna.co.id/";
-
-  // const renderBlog = () => {
-  //   const sortedEntities = entities.slice().sort((a, b) => b.id - a.id);
-  //   const slicedEntities = sortedEntities.slice(0, 10);
-
-  //   return slicedEntities.map((data) => (
-  //     <SwiperSlide key={data.id}>
-  //       <Card
-  //         as={Link}
-  //         className={style.classCard}
-  //         href={`/insight/blog/${data.id}`}
-  //         style={{ cursor: "pointer" }}
-  //       >
-  //         <LazyLoadImage
-  //           variant="top"
-  //           className="img___blog___art"
-  //           alt={data.attributes.title}
-  //           src={`${baseUrl}${data.attributes.image.data.attributes.formats.small.url.substring(
-  //             1
-  //           )}`}
-  //           effect="blur"
-  //         />
-
-  //         <Card.Body>
-  //           <span className={style.categoryIconBlog}>
-  //             {data.attributes.mode.data.attributes.title}
-  //           </span>
-  //           <Card.Title className="mt-3 text-left">
-  //             {data.attributes.title}
-  //           </Card.Title>
-  //           <Card.Text className="text-left">
-  //             {data.attributes.description}
-  //           </Card.Text>
-  //           <div className="text-left">
-  //             <span className={style.btnDetails}>Baca Selengkapnya</span>
-  //           </div>
-  //         </Card.Body>
-  //       </Card>
-  //     </SwiperSlide>
-  //   ));
-  // };
+  const baseUrl = "https://testrapi.bintangsempurna.co.id/";
 
   return (
     <section className="py-10">
@@ -84,7 +35,7 @@ const BlogSlider = (props) => {
           <div className="p-2">
             <p className="text-right mt-2">
               <Link
-                href=""
+                href="#"
                 style={{ cursor: "pointer" }}
                 className="text-danger font-weight-bold text-decoration"
               >
@@ -118,9 +69,49 @@ const BlogSlider = (props) => {
           modules={[Navigation]}
           className="mySwiper"
         >
-          {/* {renderBlog()} */}
           <>
-            <SwiperSlide>1</SwiperSlide>;
+            {data &&
+              data.data.map((data) => {
+                return (
+                  <SwiperSlide key={data.id}>
+                    <Card
+                      as={Link}
+                      className={style.classCard}
+                      href="#"
+                      style={{ cursor: "pointer" }}
+                    >
+                      <LazyLoadImage
+                        variant="top"
+                        className="img___blog___art"
+                        effect="blur"
+                        src={`${baseUrl}${data.attributes.image?.data.attributes.formats?.large?.url?.substring(
+                          1
+                        )}`}
+                        alt={data.attributes.title}
+                        width={50}
+                        height={50}
+                      />
+
+                      <Card.Body>
+                        <span className={style.categoryIconBlog}>
+                          {data.attributes.id_categories}
+                        </span>
+                        <Card.Title className="mt-3 text-left">
+                          {data.attributes.title}
+                        </Card.Title>
+                        <Card.Text className="text-left">
+                          {data.attributes.description}
+                        </Card.Text>
+                        <div className="text-left">
+                          <span className={style.btnDetails}>
+                            Baca Selengkapnya
+                          </span>
+                        </div>
+                      </Card.Body>
+                    </Card>
+                  </SwiperSlide>
+                );
+              })}
           </>
         </Swiper>
       </Container>
@@ -128,4 +119,4 @@ const BlogSlider = (props) => {
   );
 };
 
-export default BlogSlider;
+export default SliderBlog;

@@ -9,7 +9,7 @@ const headers = {
 // const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}api/`;
 
 const api = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_API_URL}/api/`,
+  baseURL: `${process.env.NEXT_PUBLIC_API_URL}`,
   headers,
 });
 

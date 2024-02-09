@@ -1,8 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  // reactStrictMode: true,
   images: {
-    domains: ["testrapi.bintangsempurna.co.id"],
+    domains: ["https://testrapi.bintangsempurna.co.id/"],
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "testrapi.bintangsempurna.co.id",
+      },
+    ],
   },
 };
 
