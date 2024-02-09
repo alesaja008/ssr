@@ -19,16 +19,16 @@ import Image from "next/image";
 import awardIcon from "@/assets/img/svg/awardIcon.svg";
 
 const SliderAward = () => {
-  const { entities, loading } = useSelector((state) => state.awardsAll);
-  const dispatch = useDispatch();
+  // const { entities, loading } = useSelector((state) => state.awardsAll);
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    const fetchApi = async () => {
-      dispatch(getAwards());
-    };
+  // useEffect(() => {
+  //   const fetchApi = async () => {
+  //     dispatch(getAwards());
+  //   };
 
-    fetchApi();
-  }, [dispatch]);
+  //   fetchApi();
+  // }, [dispatch]);
 
   const baseUrl = "https://testrapi.bintangsempurna.co.id/";
 

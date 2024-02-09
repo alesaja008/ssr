@@ -17,11 +17,15 @@ import useSWR from "swr";
 
 const SliderBlog = ({ blogs }) => {
   console.log(blogs);
-  const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/blogs`, fetcher, {
-    fallbackData: blogs,
-  });
+  const { data } = useSWR(
+    `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`,
+    fetcher,
+    {
+      fallbackData: blogs,
+    }
+  );
 
-  const baseUrl = "https://testrapi.bintangsempurna.co.id/";
+  const baseUrl = "https://testrapi.bintangsempurna.co.id";
 
   return (
     <section className="py-10">
@@ -84,12 +88,8 @@ const SliderBlog = ({ blogs }) => {
                         variant="top"
                         className="img___blog___art"
                         effect="blur"
-                        src={`${baseUrl}${data.attributes.image?.data.attributes.formats?.large?.url?.substring(
-                          1
-                        )}`}
+                        src={`${baseUrl}${data.attributes.image.data.attributes.formats.large.url}`}
                         alt={data.attributes.title}
-                        width={50}
-                        height={50}
                       />
 
                       <Card.Body>

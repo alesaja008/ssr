@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // reactStrictMode: true,
+  reactStrictMode: true,
   images: {
     domains: ["https://testrapi.bintangsempurna.co.id/"],
   },

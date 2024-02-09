@@ -53,6 +53,7 @@ export async function getServerSideProps() {
   const blogsResponse = await fetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`
   );
+
   console.log(blogsResponse);
   return {
     props: {
