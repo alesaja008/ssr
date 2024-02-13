@@ -17,35 +17,37 @@ import Link from "next/link";
 import style from "@/styles/Home.module.css";
 import Image from "next/image";
 import ChildOp from "@/assets/img/svg/iconChildOp.svg";
+import styles from "@/components/elements/styles/style.module.css";
 
-const SliderProductOp = () => {
-  const { entities, loading } = useSelector((state) => state.product);
-  const dispatch = useDispatch();
+const SliderProductOp = ({ product }) => {
+  const { data } = product;
+  // const { entities, loading } = useSelector((state) => state.product);
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    const fetchApi = async () => {
-      dispatch(getProductOp());
-    };
+  // useEffect(() => {
+  //   const fetchApi = async () => {
+  //     dispatch(getProductOp());
+  //   };
 
-    fetchApi();
-  }, [dispatch]);
+  //   fetchApi();
+  // }, [dispatch]);
 
   const baseUrl = "https://testrapi.bintangsempurna.co.id/";
 
   const renderProduct = () => {
-    return entities.map((data) => {
+    return data.map((data) => {
       return (
         <SwiperSlide key={data.id}>
           <Card
             as={Link}
-            className={style.classCard}
+            className={styles.classCard}
             href={data.attributes.link}
             // onClick={() => blogDetail(data.id, data.attributes.slug)}
             style={{ cursor: "pointer" }}
           >
             <LazyLoadImage
               variant="top"
-              className="img___blog___art"
+              className={styles.imgBlogArt}
               alt={data.attributes.title}
               src={`${baseUrl}${data.attributes.image.data.attributes.formats.small.url.substring(
                 1
@@ -54,14 +56,14 @@ const SliderProductOp = () => {
             />
 
             <Card.Body>
-              <span className={style.categoryIconOP}>onlineprint</span>
+              <span className={styles.categoryIconOP}>onlineprint</span>
               <Card.Title className="mt-3 text-left">
                 {data.attributes.title}
               </Card.Title>
-              <Card.Text className="text-left">
+              <Card.Text className={styles.cardText}>
                 {data.attributes.description}
               </Card.Text>
-              <Card.Text className="text-left">
+              <Card.Text className={styles.cardText}>
                 produk pilihan &nbsp;
                 <Image src={ChildOp} alt="childOp" />
               </Card.Text>

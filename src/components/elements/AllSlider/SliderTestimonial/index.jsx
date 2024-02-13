@@ -14,22 +14,23 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import style from "@/styles/Home.module.css";
 
-const SliderTestimonial = () => {
-  const { entities, loading } = useSelector((state) => state.sliderTestimonial);
-  const dispatch = useDispatch();
+const SliderTestimonial = ({ testimoni }) => {
+  const { data } = testimoni;
+  // const { entities, loading } = useSelector((state) => state.sliderTestimonial);
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    const fetchApi = async () => {
-      dispatch(getTestimonial());
-    };
+  // useEffect(() => {
+  //   const fetchApi = async () => {
+  //     dispatch(getTestimonial());
+  //   };
 
-    fetchApi();
-  }, [dispatch]);
+  //   fetchApi();
+  // }, [dispatch]);
 
   const baseUrl = "https://testrapi.bintangsempurna.co.id/";
 
   const renderTestimoni = () => {
-    return entities.map((data) => {
+    return data.map((data) => {
       return (
         <SwiperSlide key={data.id}>
           <div className={style.testimonial}>

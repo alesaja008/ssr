@@ -3,8 +3,10 @@ import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import Image from "next/image";
 import logoBs from "../../../assets/img/logo/logo-white.png";
 import Link from "next/link";
+import { useState } from "react";
 
 const NavbarBs = () => {
+  const [dropdown, setDropdown] = useState(false);
   return (
     <>
       <Navbar bg="red_custom" expand="lg" className="p-2 fixed-top red_custom">
@@ -23,7 +25,11 @@ const NavbarBs = () => {
                 Beranda
               </Nav.Link>
 
-              <NavDropdown title="Profile" id="basic-nav-dropdown">
+              <NavDropdown
+                title="Profile"
+                id="basic-nav-dropdown"
+                onClick={() => setDropdown(!dropdown)}
+              >
                 <NavDropdown.Item as={Link} href="/profile/tentang-kami">
                   Tentang Kami
                 </NavDropdown.Item>

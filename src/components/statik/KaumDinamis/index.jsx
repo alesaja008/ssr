@@ -5,7 +5,7 @@ import Image from "next/image";
 import SliderProductOp from "@/components/elements/AllSlider/SliderProductOp";
 import Link from "next/link";
 
-const KaumDinamis = () => {
+const KaumDinamis = ({product}) => {
   return (
     <>
       <section className="py-5">
@@ -48,7 +48,7 @@ const KaumDinamis = () => {
               </p>
             </Col>
             <Col lg={6} md={6} sm={12}>
-              <SliderProductOp />
+              <SliderProductOp product={product} />
             </Col>
           </Row>
         </Container>

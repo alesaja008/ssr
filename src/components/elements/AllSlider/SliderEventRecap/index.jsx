@@ -18,22 +18,25 @@ import style from "@/styles/Home.module.css";
 import { Container, Card } from "react-bootstrap";
 import { getEventRecap } from "@/store/product/Services";
 
-const SliderEventRecap = () => {
-  const { entities, loading } = useSelector((state) => state.eventRecap);
-  const dispatch = useDispatch();
+import styles from "@/components/elements/styles/style.module.css";
 
-  useEffect(() => {
-    const fetchApi = async () => {
-      dispatch(getEventRecap());
-    };
+const SliderEventRecap = ({ recaps }) => {
+  const { data } = recaps;
+  // const { entities, loading } = useSelector((state) => state.eventRecap);
+  // const dispatch = useDispatch();
 
-    fetchApi();
-  }, [dispatch]);
+  // useEffect(() => {
+  //   const fetchApi = async () => {
+  //     dispatch(getEventRecap());
+  //   };
+
+  //   fetchApi();
+  // }, [dispatch]);
 
   const baseUrl = "https://testrapi.bintangsempurna.co.id/";
 
   const renderRecap = () => {
-    const sortedEntities = entities.slice().sort((a, b) => b.id - a.id);
+    const sortedEntities = data.slice().sort((a, b) => b.id - a.id);
     const slicedEntities = sortedEntities.slice(0, 10);
 
     return slicedEntities.map((data) => {
@@ -41,13 +44,13 @@ const SliderEventRecap = () => {
         <SwiperSlide key={data.id}>
           <Card
             as={Link}
-            className={style.classCard}
+            className={styles.classCard}
             href={`/events/event-recap/${data.id}`}
             style={{ cursor: "pointer" }}
           >
             <LazyLoadImage
               variant="top"
-              className="img___blog___art"
+              className={styles.imgBlogArt}
               alt={data.attributes.title}
               src={`${baseUrl}${data.attributes.image.data.attributes.formats.small.url.substring(
                 1
@@ -56,17 +59,17 @@ const SliderEventRecap = () => {
             />
 
             <Card.Body>
-              <span className={style.categoryIconBlog}>
-                {data.attributes.mode.data.attributes.title}
+              <span className={styles.categoryIconBlog}>
+                {data.attributes.id_categories}
               </span>
               <Card.Title className="mt-3 text-left">
                 {data.attributes.title}
               </Card.Title>
-              <Card.Text className="text-left">
+              <Card.Text className={styles.cardText}>
                 {data.attributes.description}
               </Card.Text>
               <div className="text-left">
-                <span className={style.btnDetails}>Baca Selengkapnya</span>
+                <span className={styles.btnDetails}>Baca Selengkapnya</span>
               </div>
             </Card.Body>
           </Card>

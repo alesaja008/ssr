@@ -17,8 +17,10 @@ import { useDispatch, useSelector } from "react-redux";
 import style from "@/styles/Home.module.css";
 import Image from "next/image";
 import awardIcon from "@/assets/img/svg/awardIcon.svg";
+import styles from "@/components/elements/styles/style.module.css";
 
-const SliderAward = () => {
+const SliderAward = ({ awards }) => {
+  const { data } = awards;
   // const { entities, loading } = useSelector((state) => state.awardsAll);
   // const dispatch = useDispatch();
 
@@ -33,7 +35,7 @@ const SliderAward = () => {
   const baseUrl = "https://testrapi.bintangsempurna.co.id/";
 
   const renderAwards = () => {
-    const sortedEntities = entities.slice().sort((a, b) => b.id - a.id);
+    const sortedEntities = data.slice().sort((a, b) => b.id - a.id);
     const slicedEntities = sortedEntities.slice(0, 10);
 
     return slicedEntities.map((data) => {
@@ -41,13 +43,13 @@ const SliderAward = () => {
         <SwiperSlide key={data.id}>
           <Card
             as={Link}
-            className={style.classCard}
+            className={styles.classCard}
             href={data.attributes.slug}
             style={{ cursor: "pointer" }}
           >
             <LazyLoadImage
               variant="top"
-              className="img___blog___art"
+              className={styles.imgBlogArt}
               alt={data.attributes.title}
               src={`${baseUrl}${data.attributes.image.data.attributes.formats.small.url.substring(
                 1
@@ -56,21 +58,21 @@ const SliderAward = () => {
             />
 
             <Card.Body>
-              <span className={style.categoryIconAward}>
+              <span className={styles.categoryIconAward}>
                 {data.attributes.mode.data.attributes.title}
               </span>
               <Card.Title className="mt-3 text-left">
                 {data.attributes.title}
               </Card.Title>
-              <Card.Text className="text-left">
+              <Card.Text className={styles.cardText}>
                 {data.attributes.description}
               </Card.Text>
-              <Card.Text className="text-left">
+              <Card.Text className={styles.cardText}>
                 The winner &nbsp;
                 <Image src={awardIcon} alt="award" />
               </Card.Text>
               <div className="text-left">
-                <span className={style.btnDetails}>Baca Selengkapnya</span>
+                <span className={styles.btnDetails}>Baca Selengkapnya</span>
               </div>
             </Card.Body>
           </Card>
@@ -142,6 +144,7 @@ const SliderAward = () => {
             className="mySwiper"
           >
             {renderAwards()}
+            {/* <SwiperSlide>1</SwiperSlide> */}
           </Swiper>
         </Container>
       </section>

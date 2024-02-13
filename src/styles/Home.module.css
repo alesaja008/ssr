@@ -272,55 +272,15 @@ span.ux_title {
   height: auto;
 }
 
-.categoryIconBlog{
-  background-color: #e9f9f2;
-  padding: 3px 10px;
-  color: #198754;
-  font-size: 12px;
-  border-radius: 50px;
-  position: fixed;
-  top: 8.7rem;
-  /* border: 1px solid #198754; */
-  left: 1rem;
-}
-.categoryIconOP{
-  background-color: #e2e0ff;
-  padding: 3px 10px;
-  color: #0b02b1;
-  font-size: 12px;
-  border-radius: 50px;
-  position: fixed;
-  top: 8.7rem;
-  left: 1rem;
-}
-.categoryIconAward{
-  background-color: #fdf0cd;
-    padding: 3px 10px;
-    color: #d29100;
-    font-size: 12px;
-    border-radius: 50px;
-    position: fixed;
-    top: 8.7rem;
-    left: 1rem;
-}
 
-a.classCard:hover{
-color:black;
-text-decoration: none;
-}
 
-.classCard {
-  background: #fff;
-  box-shadow: rgba(11, 43, 158, 0.15) 0px 6px 20px -6px;
-  border-radius: 16px;
-  border: none;
-  margin: 5px;
-}
 
-.btnDetails{
-  font-size: 13px;
-  color: red;
-}
+
+
+
+
+
+
 
 .roundEclipse {
   position: absolute;

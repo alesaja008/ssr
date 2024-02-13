@@ -1,12 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "@/pages/api";
 
-// const reqOptions = {
-//   headers: {
-//     Authorization: `Bearer ${process.env.API_TOKEN}`,
-//   },
-// };
-
 const ENDPOINT = {
   SLIDERHERO: "/sliders?populate=*",
   SLIDERBLOG: "/blogs?populate=*",

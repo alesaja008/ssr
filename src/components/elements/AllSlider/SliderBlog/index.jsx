@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { Container, Card } from "react-bootstrap";
@@ -12,18 +12,12 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
-import { fetcher } from "@/lib/api";
-import useSWR from "swr";
+import styles from "@/components/elements/styles/style.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getBlogSlider } from "@/store/product/Services";
 
 const SliderBlog = ({ blogs }) => {
-  console.log(blogs);
-  const { data } = useSWR(
-    `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`,
-    fetcher,
-    {
-      fallbackData: blogs,
-    }
-  );
+  const { data } = blogs;
 
   const baseUrl = "https://testrapi.bintangsempurna.co.id";
 
@@ -74,44 +68,43 @@ const SliderBlog = ({ blogs }) => {
           className="mySwiper"
         >
           <>
-            {data &&
-              data.data.map((data) => {
-                return (
-                  <SwiperSlide key={data.id}>
-                    <Card
-                      as={Link}
-                      className={style.classCard}
-                      href="#"
-                      style={{ cursor: "pointer" }}
-                    >
-                      <LazyLoadImage
-                        variant="top"
-                        className="img___blog___art"
-                        effect="blur"
-                        src={`${baseUrl}${data.attributes.image.data.attributes.formats.large.url}`}
-                        alt={data.attributes.title}
-                      />
+            {data.map((data) => {
+              return (
+                <SwiperSlide key={data.id}>
+                  <Card
+                    as={Link}
+                    className={styles.classCard}
+                    href=""
+                    style={{ cursor: "pointer" }}
+                  >
+                    <LazyLoadImage
+                      variant="top"
+                      className={styles.imgBlogArt}
+                      effect="blur"
+                      src={`${baseUrl}${data.attributes.image.data.attributes.formats.large.url}`}
+                      alt={data.attributes.title}
+                    />
 
-                      <Card.Body>
-                        <span className={style.categoryIconBlog}>
-                          {data.attributes.id_categories}
+                    <Card.Body>
+                      <span className={styles.categoryIconBlog}>
+                        {data.attributes.id_categories}
+                      </span>
+                      <Card.Title className="mt-3 text-left">
+                        {data.attributes.title}
+                      </Card.Title>
+                      <Card.Text className={styles.cardText}>
+                        {data.attributes.description}
+                      </Card.Text>
+                      <div className="text-left">
+                        <span className={styles.btnDetails}>
+                          Baca Selengkapnya
                         </span>
-                        <Card.Title className="mt-3 text-left">
-                          {data.attributes.title}
-                        </Card.Title>
-                        <Card.Text className="text-left">
-                          {data.attributes.description}
-                        </Card.Text>
-                        <div className="text-left">
-                          <span className={style.btnDetails}>
-                            Baca Selengkapnya
-                          </span>
-                        </div>
-                      </Card.Body>
-                    </Card>
-                  </SwiperSlide>
-                );
-              })}
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </SwiperSlide>
+              );
+            })}
           </>
         </Swiper>
       </Container>

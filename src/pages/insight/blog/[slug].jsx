@@ -3,29 +3,28 @@ import { useDispatch, useSelector } from "react-redux";
 // import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import { FaAngleRight } from "react-icons/fa6";
-// import { useRouter } from "next/router";
-// import { Link } from "next/link";
-import BlogSlider from "@/components/elements/AllSlider/SliderBlog";
+import { useRouter } from "next/router";
+import { Link } from "next/link";
 
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { getDetail } from "@/store/product/Services";
 
 const BlogsDetails = () => {
-  // const query = useRouter();
+  const query = useRouter();
 
   // const navigate = useNavigate();
   // const location = useLocation();
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const { data, loading } = useSelector((state) => state.sliderBlog);
+//   const { id } = useParams();
+//   const dispatch = useDispatch();
+//   const { data, loading } = useSelector((state) => state.sliderBlog);
 
-  const fectDetailBlog = async (data) => {
-    await dispatch(getDetail(data));
-  };
-
-  useEffect(() => {
-    fectDetailBlog(id);
-  }, [id]);
+//   const fectDetailBlog = async (data) => {
+//     await dispatch(getDetail(data));
+//   };
+// ``
+//   useEffect(() => {
+//     fectDetailBlog(id);
+//   }, [id]);
 
   return (
     <>
@@ -171,8 +170,7 @@ const BlogsDetails = () => {
           </div>
         </div>
       </section>
-
-      <BlogSlider />
+      <h2>hasil: {query.slug}</h2>
     </>
   );
 };

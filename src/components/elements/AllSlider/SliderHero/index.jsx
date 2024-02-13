@@ -14,18 +14,20 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Image from "next/image";
 
-const SliderHero = () => {
-  const { entities, loading } = useSelector((state) => state.sliderHero);
-  const dispatch = useDispatch();
+const SliderHero = ({ sliderHero }) => {
+  const { data } = sliderHero;
+  // const { entities, loading } = useSelector((state) => state.sliderHero);
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    const fetchApi = async () => {
-      dispatch(getSliderHero());
-    };
+  // useEffect(() => {
+  //   const fetchApi = async () => {
+  //     dispatch(getSliderHero());
+  //   };
 
-    fetchApi();
-  }, [dispatch]);
+  //   fetchApi();
+  // }, [dispatch]);
 
   const baseUrl = "https://testrapi.bintangsempurna.co.id";
 
@@ -67,7 +69,7 @@ const SliderHero = () => {
           modules={[Autoplay, Pagination, Navigation]}
           className="mySwiper"
         >
-          {entities.map((data) => (
+          {data.map((data) => (
             <SwiperSlide key={data.id}>
               <a href={data.attributes.url}>
                 <LazyLoadImage
