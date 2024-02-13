@@ -14,17 +14,17 @@ const BlogsDetails = () => {
 
   // const navigate = useNavigate();
   // const location = useLocation();
-//   const { id } = useParams();
-//   const dispatch = useDispatch();
-//   const { data, loading } = useSelector((state) => state.sliderBlog);
+  //   const { id } = useParams();
+  //   const dispatch = useDispatch();
+  //   const { data, loading } = useSelector((state) => state.sliderBlog);
 
-//   const fectDetailBlog = async (data) => {
-//     await dispatch(getDetail(data));
-//   };
-// ``
-//   useEffect(() => {
-//     fectDetailBlog(id);
-//   }, [id]);
+  //   const fectDetailBlog = async (data) => {
+  //     await dispatch(getDetail(data));
+  //   };
+  // ``
+  //   useEffect(() => {
+  //     fectDetailBlog(id);
+  //   }, [id]);
 
   return (
     <>
@@ -170,7 +170,7 @@ const BlogsDetails = () => {
           </div>
         </div>
       </section>
-      <h2>hasil: {query.slug}</h2>
+      <p>Post: {router.query.slug}</p>
     </>
   );
 };

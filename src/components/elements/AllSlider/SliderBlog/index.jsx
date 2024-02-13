@@ -74,7 +74,7 @@ const SliderBlog = ({ blogs }) => {
                   <Card
                     as={Link}
                     className={styles.classCard}
-                    href=""
+                    href={`/blog/$/${data.attributes.slug}`}
                     style={{ cursor: "pointer" }}
                   >
                     <LazyLoadImage
