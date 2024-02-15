@@ -24,6 +24,54 @@ ReactGA.send({ hitType: "pageview", page: "/" });
 
 const inter = Inter({ subsets: ["latin"] });
 
+export async function getServerSideProps() {
+  const blogsRes = await fetch(
+    process.env.NEXT_PUBLIC_API_URL + "/blogs?populate=*"
+  );
+  // const blogs = await blogsRes.json();
+  // let featured = await blogsRes.json();
+  // if (featured.length < 1) {
+  //   featured = {};
+  // }
+  const blogs = await blogsRes.json();
+  // batas
+  const recapRes = await fetch(
+    process.env.NEXT_PUBLIC_API_URL + "/recaps?populate=*"
+  );
+  const recaps = await recapRes.json();
+  // batas
+  const awardRes = await fetch(
+    process.env.NEXT_PUBLIC_API_URL + "/awards?populate=*"
+  );
+  const awards = await awardRes.json();
+  // batas
+  const testimonialRes = await fetch(
+    process.env.NEXT_PUBLIC_API_URL + "/testimonials?populate=*"
+  );
+  const testimoni = await testimonialRes.json();
+  // batas
+  const productRes = await fetch(
+    process.env.NEXT_PUBLIC_API_URL + "/services?populate=*"
+  );
+  const product = await productRes.json();
+  // batas
+  const heroRes = await fetch(
+    process.env.NEXT_PUBLIC_API_URL + "/sliders?populate=*"
+  );
+  const sliderHero = await heroRes.json();
+  // batas
+  return {
+    props: {
+      blogs,
+      recaps,
+      awards,
+      testimoni,
+      product,
+      sliderHero,
+    },
+  };
+}
+
 export default function Home({
   blogs,
   recaps,
@@ -32,7 +80,6 @@ export default function Home({
   product,
   sliderHero,
 }) {
-  // console.log(blogs);
   return (
     <>
       <div>
@@ -55,47 +102,4 @@ export default function Home({
       </div>
     </>
   );
-}
-
-export async function getServerSideProps() {
-  const blogsRes = await fetch(
-    `https://testrapi.bintangsempurna.co.id/api/blogs?populate=*`
-  );
-  const blogs = await blogsRes.json();
-  // batas
-  const recapRes = await fetch(
-    `https://testrapi.bintangsempurna.co.id/api/recaps?populate=*`
-  );
-  const recaps = await recapRes.json();
-  // batas
-  const awardRes = await fetch(
-    `https://testrapi.bintangsempurna.co.id/api/awards?populate=*`
-  );
-  const awards = await awardRes.json();
-  // batas
-  const testimonialRes = await fetch(
-    `https://testrapi.bintangsempurna.co.id/api/testimonials?populate=*`
-  );
-  const testimoni = await testimonialRes.json();
-  // batas
-  const productRes = await fetch(
-    `https://testrapi.bintangsempurna.co.id/api/services?populate=*`
-  );
-  const product = await productRes.json();
-  // batas
-  const heroRes = await fetch(
-    `https://testrapi.bintangsempurna.co.id/api/sliders?populate=*`
-  );
-  const sliderHero = await heroRes.json();
-  // batas
-  return {
-    props: {
-      blogs,
-      recaps,
-      awards,
-      testimoni,
-      product,
-      sliderHero,
-    },
-  };
 }

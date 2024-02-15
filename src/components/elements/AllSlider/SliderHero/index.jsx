@@ -72,20 +72,22 @@ const SliderHero = ({ sliderHero }) => {
           {data.map((data) => (
             <SwiperSlide key={data.id}>
               <a href={data.attributes.url}>
-                <LazyLoadImage
-                  className="imgHeroBanner d-none d-lg-block d-md-block "
+                <Image
+                  className="imgHeroBanner "
                   effect="blur"
                   src={`${baseUrl}${data.attributes.image.data.attributes.formats.large.url}`}
                   alt={data.attributes.alt}
                   url={data.attributes.url}
+                  width={500}
+                  height={300}
                 />
-                <LazyLoadImage
+                {/* <LazyLoadImage
                   className="imgHeroBanner d-block d-sm-none"
                   effect="blur"
                   src={`${baseUrl}${data.attributes.mobile.data.attributes.formats.medium.url}`}
                   url={data.attributes.url}
                   alt={data.attributes.alt}
-                />
+                /> */}
               </a>
             </SwiperSlide>
           ))}

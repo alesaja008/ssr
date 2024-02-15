@@ -1,10 +1,7 @@
-import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { Container, Card } from "react-bootstrap";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import Link from "next/link";
-import style from "@/styles/Home.module.css";
 import Image from "next/image";
 
 // Import Swiper styles
@@ -13,13 +10,58 @@ import "swiper/css/navigation";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 import styles from "@/components/elements/styles/style.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { getBlogSlider } from "@/store/product/Services";
 
 const SliderBlog = ({ blogs }) => {
   const { data } = blogs;
 
-  const baseUrl = "https://testrapi.bintangsempurna.co.id";
+  const baseUrl = "https://testrapi.bintangsempurna.co.id/";
+
+  const renderBlog = () => {
+    const sortedEntities = data.slice().sort((a, b) => b.id - a.id);
+    const slicedEntities = sortedEntities.slice(0, 10);
+    return (
+      data &&
+      slicedEntities.map((data) => {
+        return (
+          <SwiperSlide key={data.id}>
+            <Card
+              as={Link}
+              className={styles.classCard}
+              href={`/blog/$/${data.attributes.slug}`}
+              style={{ cursor: "pointer" }}
+            >
+              <Image
+                variant="top"
+                className={styles.imgBlogArt}
+                effect="blur"
+                src={`${baseUrl}${data.attributes.image.data.attributes.formats.large.url.substring(
+                  1
+                )}`}
+                alt={data.attributes.title}
+                width={500}
+                height={300}
+              />
+
+              <Card.Body>
+                <span className={styles.categoryIconBlog}>
+                  {data.attributes.id_categories}
+                </span>
+                <Card.Title className="mt-3 text-left">
+                  {data.attributes.title.slice(0, 50)}
+                </Card.Title>
+                <Card.Text className={styles.cardText}>
+                  {data.attributes.description.slice(0, 50)}
+                </Card.Text>
+                <div className="text-left">
+                  <span className={styles.btnDetails}>Baca Selengkapnya</span>
+                </div>
+              </Card.Body>
+            </Card>
+          </SwiperSlide>
+        );
+      })
+    );
+  };
 
   return (
     <section className="py-10">
@@ -67,45 +109,7 @@ const SliderBlog = ({ blogs }) => {
           modules={[Navigation]}
           className="mySwiper"
         >
-          <>
-            {data.map((data) => {
-              return (
-                <SwiperSlide key={data.id}>
-                  <Card
-                    as={Link}
-                    className={styles.classCard}
-                    href={`/blog/$/${data.attributes.slug}`}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <LazyLoadImage
-                      variant="top"
-                      className={styles.imgBlogArt}
-                      effect="blur"
-                      src={`${baseUrl}${data.attributes.image.data.attributes.formats.large.url}`}
-                      alt={data.attributes.title}
-                    />
-
-                    <Card.Body>
-                      <span className={styles.categoryIconBlog}>
-                        {data.attributes.id_categories}
-                      </span>
-                      <Card.Title className="mt-3 text-left">
-                        {data.attributes.title}
-                      </Card.Title>
-                      <Card.Text className={styles.cardText}>
-                        {data.attributes.description}
-                      </Card.Text>
-                      <div className="text-left">
-                        <span className={styles.btnDetails}>
-                          Baca Selengkapnya
-                        </span>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                </SwiperSlide>
-              );
-            })}
-          </>
+          <>{renderBlog()}</>
         </Swiper>
       </Container>
     </section>

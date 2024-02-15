@@ -1,16 +1,16 @@
-import axios from "axios";
+// import axios from "axios";
 
-const headers = {
-  Accept: "application/json",
-  "Content-Type": "application/json",
-  // Authorization: `Bearer ${process.env.API_TOKEN}`,
-};
+// const headers = {
+//   Accept: "application/json",
+//   "Content-Type": "application/json",
+//   // Authorization: `Bearer ${process.env.API_TOKEN}`,
+// };
 
-// const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}api/`;
+// // const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}api/`;
 
-const api = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_API_URL}`,
-  headers,
-});
+// const api = axios.create({
+//   baseURL: `${process.env.NEXT_PUBLIC_API_URL}`,
+//   headers,
+// });
 
-export default api;
+// export default api;

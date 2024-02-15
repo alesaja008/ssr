@@ -1,4 +1,3 @@
-import React, { useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -8,30 +7,17 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Navigation } from "swiper/modules";
-import { useDispatch, useSelector } from "react-redux";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import Link from "next/link";
-import style from "@/styles/Home.module.css";
+import Image from "next/image";
 
 // batas
 import { Container, Card } from "react-bootstrap";
-import { getEventRecap } from "@/store/product/Services";
 
 import styles from "@/components/elements/styles/style.module.css";
 
 const SliderEventRecap = ({ recaps }) => {
   const { data } = recaps;
-  // const { entities, loading } = useSelector((state) => state.eventRecap);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   const fetchApi = async () => {
-  //     dispatch(getEventRecap());
-  //   };
-
-  //   fetchApi();
-  // }, [dispatch]);
 
   const baseUrl = "https://testrapi.bintangsempurna.co.id/";
 
@@ -39,43 +25,47 @@ const SliderEventRecap = ({ recaps }) => {
     const sortedEntities = data.slice().sort((a, b) => b.id - a.id);
     const slicedEntities = sortedEntities.slice(0, 10);
 
-    return slicedEntities.map((data) => {
-      return (
-        <SwiperSlide key={data.id}>
-          <Card
-            as={Link}
-            className={styles.classCard}
-            href={`/events/event-recap/${data.id}`}
-            style={{ cursor: "pointer" }}
-          >
-            <LazyLoadImage
-              variant="top"
-              className={styles.imgBlogArt}
-              alt={data.attributes.title}
-              src={`${baseUrl}${data.attributes.image.data.attributes.formats.small.url.substring(
-                1
-              )}`}
-              effect="blur"
-            />
+    return (
+      data &&
+      slicedEntities.map((data) => {
+        return (
+          <SwiperSlide key={data.id}>
+            <Card
+              as={Link}
+              className={styles.classCard}
+              href={`/events/event-recap/${data.id}`}
+              style={{ cursor: "pointer" }}
+            >
+              <Image
+                variant="top"
+                className={styles.imgBlogArt}
+                alt={data.attributes.title}
+                src={`${baseUrl}${data.attributes.image.data.attributes.formats.small.url.substring(
+                  1
+                )}`}
+                width={500}
+                height={300}
+              />
 
-            <Card.Body>
-              <span className={styles.categoryIconBlog}>
-                {data.attributes.id_categories}
-              </span>
-              <Card.Title className="mt-3 text-left">
-                {data.attributes.title}
-              </Card.Title>
-              <Card.Text className={styles.cardText}>
-                {data.attributes.description}
-              </Card.Text>
-              <div className="text-left">
-                <span className={styles.btnDetails}>Baca Selengkapnya</span>
-              </div>
-            </Card.Body>
-          </Card>
-        </SwiperSlide>
-      );
-    });
+              <Card.Body>
+                <span className={styles.categoryIconBlog}>
+                  {data.attributes.id_categories}
+                </span>
+                <Card.Title className="mt-3 text-left">
+                  {data.attributes.title.slice(0, 50)}
+                </Card.Title>
+                <Card.Text className={styles.cardText}>
+                  {data.attributes.description.slice(0, 50)}
+                </Card.Text>
+                <div className="text-left">
+                  <span className={styles.btnDetails}>Baca Selengkapnya</span>
+                </div>
+              </Card.Body>
+            </Card>
+          </SwiperSlide>
+        );
+      })
+    );
   };
 
   return (

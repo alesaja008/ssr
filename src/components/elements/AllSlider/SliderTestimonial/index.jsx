@@ -13,19 +13,10 @@ import { useDispatch, useSelector } from "react-redux";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import style from "@/styles/Home.module.css";
+import Image from "next/image";
 
 const SliderTestimonial = ({ testimoni }) => {
   const { data } = testimoni;
-  // const { entities, loading } = useSelector((state) => state.sliderTestimonial);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   const fetchApi = async () => {
-  //     dispatch(getTestimonial());
-  //   };
-
-  //   fetchApi();
-  // }, [dispatch]);
 
   const baseUrl = "https://testrapi.bintangsempurna.co.id/";
 
@@ -40,17 +31,18 @@ const SliderTestimonial = ({ testimoni }) => {
 
             <div className={style.testimonialDetails}>
               <div className={style.testimonialImg}>
-                <LazyLoadImage
+                <Image
                   src={`${baseUrl}${data.attributes.gambar.data.attributes.formats.thumbnail.url.substring(
                     1
                   )}`}
                   alt=""
+                  width={20}
+                  height={20}
                 />
               </div>
               <div className={style.testimonialInfo}>
                 <h4 className={style.testimonialName}>
-                  {" "}
-                  {data.attributes.title}
+                  {data.attributes.title.slice(0, 50)}
                 </h4>
                 <h5 className={style.testimonialJob}>
                   {data.attributes.Company}

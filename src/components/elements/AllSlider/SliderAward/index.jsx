@@ -10,27 +10,13 @@ import "swiper/css/pagination";
 import { Navigation } from "swiper/modules";
 import { Container, Card } from "react-bootstrap";
 import Link from "next/link";
-import { getAwards } from "@/store/product/Services";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { useDispatch, useSelector } from "react-redux";
-import style from "@/styles/Home.module.css";
 import Image from "next/image";
 import awardIcon from "@/assets/img/svg/awardIcon.svg";
 import styles from "@/components/elements/styles/style.module.css";
 
 const SliderAward = ({ awards }) => {
   const { data } = awards;
-  // const { entities, loading } = useSelector((state) => state.awardsAll);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   const fetchApi = async () => {
-  //     dispatch(getAwards());
-  //   };
-
-  //   fetchApi();
-  // }, [dispatch]);
 
   const baseUrl = "https://testrapi.bintangsempurna.co.id/";
 
@@ -47,7 +33,7 @@ const SliderAward = ({ awards }) => {
             href={data.attributes.slug}
             style={{ cursor: "pointer" }}
           >
-            <LazyLoadImage
+            <Image
               variant="top"
               className={styles.imgBlogArt}
               alt={data.attributes.title}
@@ -55,6 +41,8 @@ const SliderAward = ({ awards }) => {
                 1
               )}`}
               effect="blur"
+              width={500}
+              height={300}
             />
 
             <Card.Body>
@@ -62,10 +50,10 @@ const SliderAward = ({ awards }) => {
                 {data.attributes.mode.data.attributes.title}
               </span>
               <Card.Title className="mt-3 text-left">
-                {data.attributes.title}
+                {data.attributes.title.slice(0, 50)}
               </Card.Title>
               <Card.Text className={styles.cardText}>
-                {data.attributes.description}
+                {data.attributes.description.slice(0, 50)}
               </Card.Text>
               <Card.Text className={styles.cardText}>
                 The winner &nbsp;

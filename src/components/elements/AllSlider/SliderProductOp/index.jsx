@@ -21,16 +21,6 @@ import styles from "@/components/elements/styles/style.module.css";
 
 const SliderProductOp = ({ product }) => {
   const { data } = product;
-  // const { entities, loading } = useSelector((state) => state.product);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   const fetchApi = async () => {
-  //     dispatch(getProductOp());
-  //   };
-
-  //   fetchApi();
-  // }, [dispatch]);
 
   const baseUrl = "https://testrapi.bintangsempurna.co.id/";
 
@@ -45,7 +35,7 @@ const SliderProductOp = ({ product }) => {
             // onClick={() => blogDetail(data.id, data.attributes.slug)}
             style={{ cursor: "pointer" }}
           >
-            <LazyLoadImage
+            <Image
               variant="top"
               className={styles.imgBlogArt}
               alt={data.attributes.title}
@@ -53,6 +43,8 @@ const SliderProductOp = ({ product }) => {
                 1
               )}`}
               effect="blur"
+              width={500}
+              height={300}
             />
 
             <Card.Body>
@@ -61,7 +53,7 @@ const SliderProductOp = ({ product }) => {
                 {data.attributes.title}
               </Card.Title>
               <Card.Text className={styles.cardText}>
-                {data.attributes.description}
+                {data.attributes.description.slice(0, 50)}
               </Card.Text>
               <Card.Text className={styles.cardText}>
                 produk pilihan &nbsp;

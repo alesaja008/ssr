@@ -12,7 +12,7 @@ import store from "@/store";
 export default function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <AppShell>
+      <AppShell Component={Component} pageProps={pageProps}>
         <Component {...pageProps} />
       </AppShell>
     </Provider>
