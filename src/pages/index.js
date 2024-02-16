@@ -25,15 +25,16 @@ ReactGA.send({ hitType: "pageview", page: "/" });
 const inter = Inter({ subsets: ["latin"] });
 
 export async function getServerSideProps() {
-  const blogsRes = await fetch(
+  const reqFeatured = await fetch(
     process.env.NEXT_PUBLIC_API_URL + "/blogs?populate=*"
   );
-  // const blogs = await blogsRes.json();
-  // let featured = await blogsRes.json();
+  const blogs = await reqFeatured.json();
+
   // if (featured.length < 1) {
   //   featured = {};
   // }
-  const blogs = await blogsRes.json();
+
+  // const blogs = await blogsRes.json();
   // batas
   const recapRes = await fetch(
     process.env.NEXT_PUBLIC_API_URL + "/recaps?populate=*"
@@ -80,6 +81,7 @@ export default function Home({
   product,
   sliderHero,
 }) {
+  // console.log(featured);
   return (
     <>
       <div>
@@ -98,7 +100,7 @@ export default function Home({
         <MemberApps />
         <SliderTestimonial testimoni={testimoni} />
         <SliderEventRecap recaps={recaps} />
-        <SliderBlog blogs={blogs} />
+        <SliderBlog {...blogs} />
       </div>
     </>
   );

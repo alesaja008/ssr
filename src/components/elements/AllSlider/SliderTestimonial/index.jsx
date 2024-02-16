@@ -31,13 +31,11 @@ const SliderTestimonial = ({ testimoni }) => {
 
             <div className={style.testimonialDetails}>
               <div className={style.testimonialImg}>
-                <Image
+                <LazyLoadImage
                   src={`${baseUrl}${data.attributes.gambar.data.attributes.formats.thumbnail.url.substring(
                     1
                   )}`}
                   alt=""
-                  width={20}
-                  height={20}
                 />
               </div>
               <div className={style.testimonialInfo}>

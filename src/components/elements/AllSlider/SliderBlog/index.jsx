@@ -11,23 +11,22 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 
 import styles from "@/components/elements/styles/style.module.css";
 
-const SliderBlog = ({ blogs }) => {
-  const { data } = blogs;
-
+const SliderBlog = (props) => {
+  const { data } = props;
   const baseUrl = "https://testrapi.bintangsempurna.co.id/";
 
   const renderBlog = () => {
-    const sortedEntities = data.slice().sort((a, b) => b.id - a.id);
-    const slicedEntities = sortedEntities.slice(0, 10);
+    // const sortedEntities = data.slice().sort((a, b) => b.id - a.id);
+    // const slicedEntities = sortedEntities.slice(0, 10);
     return (
       data &&
-      slicedEntities.map((data) => {
+      data.map((data) => {
         return (
           <SwiperSlide key={data.id}>
             <Card
               as={Link}
               className={styles.classCard}
-              href={`/blog/$/${data.attributes.slug}`}
+              href={`/insight/blog/${data.attributes.slug}`}
               style={{ cursor: "pointer" }}
             >
               <Image
@@ -75,7 +74,7 @@ const SliderBlog = ({ blogs }) => {
           <div className="p-2">
             <p className="text-right mt-2">
               <Link
-                href="#"
+                href="/insight/blog/"
                 style={{ cursor: "pointer" }}
                 className="text-danger font-weight-bold text-decoration"
               >

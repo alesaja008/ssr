@@ -6,25 +6,30 @@ import { FaAngleRight } from "react-icons/fa6";
 import { useRouter } from "next/router";
 import { Link } from "next/link";
 
-import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { getDetail } from "@/store/product/Services";
+// import { useNavigate, useParams, useLocation } from "react-router-dom";
+// import { getDetail } from "@/store/product/Services";
 
-const BlogsDetails = () => {
+export async function getServerSideProps({ params }) {
+  const reqDetails = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/blogs?slug=${slug}`
+  );
+  const singel = await reqDetails.json();
+
+  if (!single || single.length === 0) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      single: single[0],
+    },
+  };
+}
+const BlogsDetails = ({ singel }) => {
+  console.log(singel);
   const query = useRouter();
-
-  // const navigate = useNavigate();
-  // const location = useLocation();
-  //   const { id } = useParams();
-  //   const dispatch = useDispatch();
-  //   const { data, loading } = useSelector((state) => state.sliderBlog);
-
-  //   const fectDetailBlog = async (data) => {
-  //     await dispatch(getDetail(data));
-  //   };
-  // ``
-  //   useEffect(() => {
-  //     fectDetailBlog(id);
-  //   }, [id]);
 
   return (
     <>

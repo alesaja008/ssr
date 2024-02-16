@@ -1,6 +1,7 @@
 import React from "react";
 import notFoundImg from "../assets/svg/notFound.svg";
 import Image from "next/image";
+import Link from "next/link";
 
 const NotFound = () => {
   return (
@@ -16,6 +17,9 @@ const NotFound = () => {
               <p className="text-center title__p">
                 Mungkin kamu salah jalan atau alamat. Ayo cari ulang!
               </p>
+              <Link className="btn coodiv-text-11 mt-10 rounded-pill" href="/">
+                Kembali sebelum hujan
+              </Link>
             </div>
           </div>
         </div>
