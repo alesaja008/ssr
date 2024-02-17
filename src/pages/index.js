@@ -26,15 +26,10 @@ const inter = Inter({ subsets: ["latin"] });
 
 export async function getServerSideProps() {
   const reqFeatured = await fetch(
-    process.env.NEXT_PUBLIC_API_URL + "/blogs?populate=*"
+    `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`
   );
   const blogs = await reqFeatured.json();
 
-  // if (featured.length < 1) {
-  //   featured = {};
-  // }
-
-  // const blogs = await blogsRes.json();
   // batas
   const recapRes = await fetch(
     process.env.NEXT_PUBLIC_API_URL + "/recaps?populate=*"

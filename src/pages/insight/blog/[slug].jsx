@@ -1,35 +1,27 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import { FaAngleRight } from "react-icons/fa6";
 import { useRouter } from "next/router";
 import { Link } from "next/link";
+import { useEffect, useState } from "react";
 
-// import { useNavigate, useParams, useLocation } from "react-router-dom";
-// import { getDetail } from "@/store/product/Services";
-
-export async function getServerSideProps({ params }) {
-  const reqDetails = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/blogs?slug=${slug}`
+export async function getServerSideProps() {
+  const reqFeatured = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`
   );
-  const singel = await reqDetails.json();
-
-  if (!single || single.length === 0) {
-    return {
-      notFound: true,
-    };
-  }
+  const blogs = await reqFeatured.json();
 
   return {
     props: {
-      single: single[0],
+      blogs,
     },
   };
 }
-const BlogsDetails = ({ singel }) => {
-  console.log(singel);
-  const query = useRouter();
+
+const BlogsDetails = ({ blogs }) => {
+  console.log(blogs);
+  const { data } = blogs;
 
   return (
     <>
@@ -61,7 +53,7 @@ const BlogsDetails = ({ singel }) => {
               <div className="d-flex flex-row ">
                 <div className="p-2 text-Published">
                   <h2 className="artikel-detail_tittle text-left">
-                    {data.attributes.title}
+                    {/* {data.attributes.title} */}
                   </h2>
                 </div>
               </div>
@@ -175,7 +167,6 @@ const BlogsDetails = ({ singel }) => {
           </div>
         </div>
       </section>
-      <p>Post: {router.query.slug}</p>
     </>
   );
 };
