@@ -24,7 +24,7 @@ ReactGA.send({ hitType: "pageview", page: "/" });
 
 const inter = Inter({ subsets: ["latin"] });
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   const reqFeatured = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`
   );

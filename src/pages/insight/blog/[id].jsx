@@ -8,27 +8,35 @@ import { useEffect, useState } from "react";
 import SliderBlog from "@/components/elements/AllSlider/SliderBlog";
 
 export async function getServerSideProps(context) {
-  try {
-    const { id } = context.query;
-    const { slug } = context;
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/blogs/${id}?populate=*`
-    );
+  const { params } = context;
+  const id = params.id;
 
-    const blogs = await response.json();
-    return {
-      props: {
-        blogs: blogs.data,
-      },
-    };
-  } catch (error) {
-    console.error("Error fetching blog data:", error);
-    return { props: { blog: null } };
-  }
+  return {
+    props: {
+      id: id,
+    },
+  };
+
+  // try {
+  //   const { id } = context.query;
+  //   const { slug } = context;
+  //   const response = await fetch(
+  //     `${process.env.NEXT_PUBLIC_API_URL}/blogs/${id}?populate=*`
+  //   );
+  //   const blogs = await response.json();
+  //   return {
+  //     props: {
+  //       blogs: blogs.data,
+  //     },
+  //   };
+  // } catch (error) {
+  //   console.error("Error fetching blog data:", error);
+  //   return { props: { blog: null } };
+  // }
 }
 
-const BlogsDetails = ({ blogs }) => {
-  console.log(blogs);
+const BlogsDetails = ({ id }) => {
+  console.log(id);
   return (
     <>
       <section className="py-20">
