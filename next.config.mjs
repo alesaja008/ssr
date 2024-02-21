@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     domains: ["https://testrapi.bintangsempurna.co.id/"],
   },
+
   images: {
     remotePatterns: [
       {

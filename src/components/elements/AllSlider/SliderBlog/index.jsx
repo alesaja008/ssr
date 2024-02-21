@@ -16,8 +16,6 @@ const SliderBlog = (props) => {
   const baseUrl = "https://testrapi.bintangsempurna.co.id/";
 
   const renderBlog = () => {
-    // const sortedEntities = data.slice().sort((a, b) => b.id - a.id);
-    // const slicedEntities = sortedEntities.slice(0, 10);
     return (
       data &&
       data.map((data) => {

@@ -5,30 +5,35 @@ import { FaAngleRight } from "react-icons/fa6";
 import { useRouter } from "next/router";
 import { Link } from "next/link";
 import { useEffect, useState } from "react";
+import SliderBlog from "@/components/elements/AllSlider/SliderBlog";
 
-export async function getServerSideProps() {
-  const reqFeatured = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`
-  );
-  const blogs = await reqFeatured.json();
+export async function getServerSideProps(context) {
+  try {
+    const { id } = context.query;
+    const { slug } = context;
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/blogs/${id}?populate=*`
+    );
 
-  return {
-    props: {
-      blogs,
-    },
-  };
+    const blogs = await response.json();
+    return {
+      props: {
+        blogs: blogs.data,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching blog data:", error);
+    return { props: { blog: null } };
+  }
 }
 
 const BlogsDetails = ({ blogs }) => {
   console.log(blogs);
-  const { data } = blogs;
-
   return (
     <>
       <section className="py-20">
         <div className="container">
           <div className="row">
-            {/* <div className="col-lg-1"></div> */}
             <div className="col-lg-8 ">
               <div className="the_breadcrumb_conatiner_page">
                 <div className="the_breadcrumb">
@@ -53,7 +58,7 @@ const BlogsDetails = ({ blogs }) => {
               <div className="d-flex flex-row ">
                 <div className="p-2 text-Published">
                   <h2 className="artikel-detail_tittle text-left">
-                    {/* {data.attributes.title} */}
+                    {/* {blogs.attributes.title} */}
                   </h2>
                 </div>
               </div>
@@ -156,7 +161,9 @@ const BlogsDetails = ({ blogs }) => {
         </div>
       </section>
 
-      <section className="blog-content-new mt-10 mb-10">
+      <SliderBlog />
+
+      {/* <section className="blog-content-new mt-10 mb-10">
         <div className="article-body size-container">
           <div className="container">
             <div className="row">
@@ -166,7 +173,7 @@ const BlogsDetails = ({ blogs }) => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };

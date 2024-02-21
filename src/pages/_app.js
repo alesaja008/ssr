@@ -6,15 +6,15 @@ import "@/assets/css/bootstrap.min.css";
 import AppShell from "@/components/layouts/AppSheel";
 // batas
 
-import { Provider } from "react-redux";
-import store from "@/store";
+// import { Provider } from "react-redux";
+// import store from "@/store";
 
 export default function App({ Component, pageProps }) {
   return (
-    <Provider store={store}>
-      <AppShell Component={Component} pageProps={pageProps}>
-        <Component {...pageProps} />
-      </AppShell>
-    </Provider>
+    // <Provider store={store}>
+    <AppShell pageProps={pageProps}>
+      <Component {...pageProps} />
+    </AppShell>
+    // </Provider>
   );
 }
