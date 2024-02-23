@@ -15,6 +15,8 @@ const Blogs = () => {
                   className={style.recapArtic}
                   alt=""
                   src="https://testrapi.bintangsempurna.co.id/uploads/small_Sampel_Story_Book_8dc92e1b9c.jpg"
+                  width={50}
+                  height={50}
                 />
                 <h2 className={style.paragrafRecap}>
                   Bantal Custom untuk Sentuhan Pribadi dalam Dekorasi Ruang Anda

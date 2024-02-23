@@ -11,7 +11,7 @@
 //   EVENTRECAP: "/recaps/?populate=*",
 // };
 
-// export const getSliderHero = createAsyncThunk(
+// npm  getSliderHero = createAsyncThunk(
 //   "hero/getSliderHero",
 //   async () => {
 //     try {

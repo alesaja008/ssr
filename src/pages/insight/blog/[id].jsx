@@ -2,41 +2,28 @@ import { useDispatch, useSelector } from "react-redux";
 // import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import { FaAngleRight } from "react-icons/fa6";
-import { useRouter } from "next/router";
 import { Link } from "next/link";
-import { useEffect, useState } from "react";
+
 import SliderBlog from "@/components/elements/AllSlider/SliderBlog";
 
 export async function getServerSideProps(context) {
   const { params } = context;
   const id = params.id;
 
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`
+  );
+  const data = await res.json();
+
   return {
     props: {
-      id: id,
+      blogs: data,
     },
   };
-
-  // try {
-  //   const { id } = context.query;
-  //   const { slug } = context;
-  //   const response = await fetch(
-  //     `${process.env.NEXT_PUBLIC_API_URL}/blogs/${id}?populate=*`
-  //   );
-  //   const blogs = await response.json();
-  //   return {
-  //     props: {
-  //       blogs: blogs.data,
-  //     },
-  //   };
-  // } catch (error) {
-  //   console.error("Error fetching blog data:", error);
-  //   return { props: { blog: null } };
-  // }
 }
 
-const BlogsDetails = ({ id }) => {
-  console.log(id);
+const BlogsDetails = ({ blogs }) => {
+  console.log(blogs);
   return (
     <>
       <section className="py-20">

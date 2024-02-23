@@ -84,7 +84,7 @@ export default function Home({
           <title>COBAIN</title>
         </Head>
         {/* <MetaHome /> */}
-        {/* <SliderHero sliderHero={sliderHero} />
+        <SliderHero sliderHero={sliderHero} />
         <SliderClient />
         <TemukanHome />
         <KaumDinamis product={product} />
@@ -93,7 +93,7 @@ export default function Home({
         <Layanan />
         <SliderAward awards={awards} />
         <MemberApps />
-        <SliderTestimonial testimoni={testimoni} /> */}
+        <SliderTestimonial testimoni={testimoni} />
         <SliderEventRecap recaps={recaps} />
         <SliderBlog {...blogs} />
       </div>
