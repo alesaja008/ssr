@@ -24,7 +24,7 @@ const SliderBlog = (props) => {
             <Card
               as={Link}
               className={styles.classCard}
-              href={`/insight/blog/${data.attributes.slug}`}
+              href={`/insight/blog/${data.id}/${data.attributes.slug}`}
               style={{ cursor: "pointer" }}
             >
               <Image

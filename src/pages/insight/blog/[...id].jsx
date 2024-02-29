@@ -1,18 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
 // import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import { FaAngleRight } from "react-icons/fa6";
 import { Link } from "next/link";
-
+import { useRouter } from "next/router";
 import SliderBlog from "@/components/elements/AllSlider/SliderBlog";
 
 export async function getServerSideProps(context) {
   const { params } = context;
-  const id = params.id;
-
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`
-  );
+  const id = params.id[0];
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs/${id}`);
   const data = await res.json();
 
   return {
@@ -23,7 +19,9 @@ export async function getServerSideProps(context) {
 }
 
 const BlogsDetails = ({ blogs }) => {
-  console.log(blogs);
+  const router = useRouter();
+  const { id } = router.query;
+
   return (
     <>
       <section className="py-20">
@@ -53,7 +51,7 @@ const BlogsDetails = ({ blogs }) => {
               <div className="d-flex flex-row ">
                 <div className="p-2 text-Published">
                   <h2 className="artikel-detail_tittle text-left">
-                    {/* {blogs.attributes.title} */}
+                    {blogs.data.attributes.title}
                   </h2>
                 </div>
               </div>
@@ -90,17 +88,7 @@ const BlogsDetails = ({ blogs }) => {
                 />
               </div>
               <p className="title___details text-left py-5">
-                Program membership merupakan salah satu strategi marketing untuk
-                menarik dan mempertahankan konsumen. Konsumen biasanya juga suka
-                dengan program membership. Dengan memiliki kartu member,
-                konsumen akan mendapat lebih banyak keuntungan dan berbagai
-                promo. Baca Juga: Ada 3 Jenis Member Card Beserta Keuntungannya.
-                Punya Anda yang Mana Nih? Lalu apa untungnya bagi perusahaan
-                membuat program membership? Sekilas memang kelihatan hanya
-                menguntungkan konsumen. Mereka yang pegang member card akan
-                dapat diskon lebih banyak, poin dan lain sebagainya sesuai
-                dengan kebijakan program. Tapi kalau dicermati lebih dalam,
-                program member sangat menguntungkan bagi Perusahaan.
+                {blogs.data.attributes.description}
               </p>
             </div>
             <div className="col-lg-4">
