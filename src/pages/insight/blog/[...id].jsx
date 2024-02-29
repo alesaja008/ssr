@@ -3,12 +3,17 @@ import Image from "next/image";
 import { FaAngleRight } from "react-icons/fa6";
 import { Link } from "next/link";
 import { useRouter } from "next/router";
+import ReactMarkdown from "react-markdown";
 import SliderBlog from "@/components/elements/AllSlider/SliderBlog";
+import { TiTime } from "react-icons/ti";
+import style from "@/pages/insight/blog/styles.module.css";
 
 export async function getServerSideProps(context) {
   const { params } = context;
   const id = params.id[0];
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs/${id}`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/blogs/${id}?populate=*`
+  );
   const data = await res.json();
 
   return {
@@ -21,6 +26,8 @@ export async function getServerSideProps(context) {
 const BlogsDetails = ({ blogs }) => {
   const router = useRouter();
   const { id } = router.query;
+
+  const baseUrl = "https://testrapi.bintangsempurna.co.id/";
 
   return (
     <>
@@ -42,8 +49,7 @@ const BlogsDetails = ({ blogs }) => {
                     >
                       Blog{" "}
                     </a>
-                    <FaAngleRight /> Membership Untung Lebih Banyak, Pelanggan
-                    Makin Luas
+                    <FaAngleRight /> {blogs.data.attributes.title}
                   </div>
                 </div>
               </div>
@@ -56,20 +62,33 @@ const BlogsDetails = ({ blogs }) => {
                 </div>
               </div>
 
-              <div className="d-flex flex-row mb-3">
-                <div className="p-2 text-Published">
-                  Published on 20 Juli 2023
+              <div className="d-flex flex-row ">
+                <div className="text-Published">
+                  <p className={style.date_now}>
+                    {" "}
+                    &nbsp; <TiTime /> &nbsp;
+                    {new Date(
+                      blogs.data.attributes.createdAt
+                    ).toLocaleDateString("id-ID", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                      weekday: "long", // Menambahkan hari
+                    })}
+                  </p>
                 </div>
               </div>
 
               <div className="row mb-3">
                 <div className="d-flex align-content-stretch flex-wrap">
-                  <div className="HastagCategory">#Inspiration</div>
-                  <div className="HastagCategory">#Design Ideas</div>
+                  <div className="HastagCategory">
+                    {blogs.data.attributes.slug}
+                  </div>
+                  {/* <div className="HastagCategory">#Design Ideas</div>
                   <div className="HastagCategory">#Marketing & Promotion</div>
                   <div className="HastagCategory">#Whats New</div>
                   <div className="HastagCategory">#Tips n Trik</div>
-                  <div className="HastagCategory">#Print Knowledge</div>
+                  <div className="HastagCategory">#Print Knowledge</div> */}
                 </div>
               </div>
 
@@ -80,16 +99,18 @@ const BlogsDetails = ({ blogs }) => {
               <div className="artikel-detail_hero">
                 <Image
                   className="content-img-detail"
-                  src="https://testrapi.bintangsempurna.co.id/uploads/large_membership_login_web_banner_f3b4a40b29.jpg"
+                  src={`${baseUrl}${blogs.data.attributes.image.data.attributes.formats.small.url.substring(
+                    1
+                  )}`}
                   loading="lazy"
                   alt=""
                   width={400}
                   height={400}
                 />
               </div>
-              <p className="title___details text-left py-5">
+              <ReactMarkdown className="title___details text-left py-5">
                 {blogs.data.attributes.description}
-              </p>
+              </ReactMarkdown>
             </div>
             <div className="col-lg-4">
               <div className="NewsRelease_section py-10">

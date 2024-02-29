@@ -30,3 +30,8 @@
         font-size: 12px;
         float: left;
   }
+
+  .date_now{
+    font-size: 13px;
+    font-weight: 300;
+  }
