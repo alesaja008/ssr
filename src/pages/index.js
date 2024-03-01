@@ -81,7 +81,10 @@ export default function Home({
     <>
       <div>
         <Head>
-          <title>COBAIN</title>
+          <title>
+            {" "}
+            Printing Terlengkap, Cepat dan Berkualitas | Bintang Sempurna
+          </title>
         </Head>
         {/* <MetaHome /> */}
         <SliderHero sliderHero={sliderHero} />
