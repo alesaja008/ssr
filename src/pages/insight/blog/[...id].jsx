@@ -40,6 +40,13 @@ const BlogsDetails = ({ blogs }) => {
           name="description"
           content={blogs.data.attributes.SEO.description}
         />
+        <meta
+          property="og:image"
+          content={`${baseUrl}${blogs.data.attributes.image.data.attributes.formats.small.url.substring(
+            1
+          )}`}
+          id="og-image"
+        ></meta>
       </Head>
       <section className="py-20">
         <div className="container">
