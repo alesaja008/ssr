@@ -5,8 +5,10 @@ import { Link } from "next/link";
 import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
 import SliderBlog from "@/components/elements/AllSlider/SliderBlog";
-import { TiTime } from "react-icons/ti";
+import { CiClock2 } from "react-icons/ci";
 import style from "@/pages/insight/blog/styles.module.css";
+
+import Head from "next/head";
 
 export async function getServerSideProps(context) {
   const { params } = context;
@@ -31,6 +33,14 @@ const BlogsDetails = ({ blogs }) => {
 
   return (
     <>
+      <Head>
+        <title>{blogs.data.attributes.title}</title>
+        <meta name="title" content={blogs.data.attributes.title} />
+        <meta
+          name="description"
+          content={blogs.data.attributes.SEO.description}
+        />
+      </Head>
       <section className="py-20">
         <div className="container">
           <div className="row">
@@ -66,7 +76,7 @@ const BlogsDetails = ({ blogs }) => {
                 <div className="text-Published">
                   <p className={style.date_now}>
                     {" "}
-                    &nbsp; <TiTime /> &nbsp;
+                    &nbsp; <CiClock2 /> &nbsp;
                     {new Date(
                       blogs.data.attributes.createdAt
                     ).toLocaleDateString("id-ID", {
@@ -81,14 +91,14 @@ const BlogsDetails = ({ blogs }) => {
 
               <div className="row mb-3">
                 <div className="d-flex align-content-stretch flex-wrap">
-                  <div className="HastagCategory">
-                    {blogs.data.attributes.slug}
-                  </div>
-                  {/* <div className="HastagCategory">#Design Ideas</div>
+                  {/* <div className="HastagCategory">
+                    {blogs.data.attributes.categories.data.attributes.title}
+                  </div> */}
+                  <div className="HastagCategory">#Design Ideas</div>
                   <div className="HastagCategory">#Marketing & Promotion</div>
                   <div className="HastagCategory">#Whats New</div>
                   <div className="HastagCategory">#Tips n Trik</div>
-                  <div className="HastagCategory">#Print Knowledge</div> */}
+                  <div className="HastagCategory">#Print Knowledge</div>
                 </div>
               </div>
 
