@@ -9,6 +9,7 @@ import { CiClock2 } from "react-icons/ci";
 import style from "@/pages/insight/blog/styles.module.css";
 
 import Head from "next/head";
+import UpdateBlog from "@/components/UpdateContent/blogTerbaru";
 
 export async function getServerSideProps(context) {
   const { params } = context;
@@ -18,14 +19,20 @@ export async function getServerSideProps(context) {
   );
   const data = await res.json();
 
+  const reqFeatured = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`
+  );
+  const sliderBlog = await reqFeatured.json();
+
   return {
     props: {
       blogs: data,
+      slider: sliderBlog,
     },
   };
 }
 
-const BlogsDetails = ({ blogs }) => {
+const BlogsDetails = ({ blogs, slider }) => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -98,14 +105,14 @@ const BlogsDetails = ({ blogs }) => {
 
               <div className="row mb-3">
                 <div className="d-flex align-content-stretch flex-wrap">
-                  {/* <div className="HastagCategory">
-                    {blogs.data.attributes.categories.data.attributes.title}
-                  </div> */}
-                  <div className="HastagCategory">#Design Ideas</div>
+                  <div className="HastagCategory">
+                    #{blogs.data.attributes.title}
+                  </div>
+                  {/* <div className="HastagCategory">#Design Ideas</div>
                   <div className="HastagCategory">#Marketing & Promotion</div>
                   <div className="HastagCategory">#Whats New</div>
                   <div className="HastagCategory">#Tips n Trik</div>
-                  <div className="HastagCategory">#Print Knowledge</div>
+                  <div className="HastagCategory">#Print Knowledge</div> */}
                 </div>
               </div>
 
@@ -130,59 +137,13 @@ const BlogsDetails = ({ blogs }) => {
               </ReactMarkdown>
             </div>
             <div className="col-lg-4">
-              <div className="NewsRelease_section py-10">
-                <h1 className="artikel-detail_tittle text-left">
-                  Update terbaru
-                </h1>
-                <hr />
-                {/* batas */}
-                <div className="cardRelease mb-3">
-                  <div className="d-flex align-items-center m-3">
-                    <div className="flex-shrink-0">
-                      <Image
-                        className="newUpdate"
-                        src="https://testrapi.bintangsempurna.co.id/uploads/small_TUMBLER_b02d48a137.png"
-                        alt=""
-                        width={100}
-                        height={100}
-                      />
-                    </div>
-                    <div className="flex-grow-1 ms-3 text-left">
-                      <h2 className=" text_news">
-                        Botol Minum Tumbler: Souvenir Populer Bisnis, Sudah
-                        Punya Belum?
-                      </h2>
-                      <div className="d-flex flex-row mb-3">
-                        <div className="p-2 text-Published">
-                          Published on 20 Juli 2023
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* batas */}
-              <h2 className="artikel-detail_tittle text-left">
-                Temukan berdasarkan topik
-              </h2>
-              <hr />
-              <div className="row mb-3">
-                <div className="d-flex align-content-stretch flex-wrap">
-                  <div className="TopikCategory">Inspiration</div>
-                  <div className="TopikCategory">Design Ideas</div>
-                  <div className="TopikCategory">Marketing & Promotion</div>
-                  <div className="TopikCategory">Whats New</div>
-                  <div className="TopikCategory">Tips n Trik</div>
-                  <div className="TopikCategory">Print Knowledge</div>
-                </div>
-              </div>
-              {/* batas */}
+              <UpdateBlog />
             </div>
           </div>
         </div>
       </section>
 
-      <SliderBlog />
+      <SliderBlog {...slider} />
 
       {/* <section className="blog-content-new mt-10 mb-10">
         <div className="article-body size-container">
