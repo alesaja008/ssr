@@ -105,14 +105,11 @@ const BlogsDetails = ({ blogs, slider }) => {
 
               <div className="row mb-3">
                 <div className="d-flex align-content-stretch flex-wrap">
-                  <div className="HastagCategory">
-                    #{blogs.data.attributes.title}
-                  </div>
-                  {/* <div className="HastagCategory">#Design Ideas</div>
-                  <div className="HastagCategory">#Marketing & Promotion</div>
-                  <div className="HastagCategory">#Whats New</div>
-                  <div className="HastagCategory">#Tips n Trik</div>
-                  <div className="HastagCategory">#Print Knowledge</div> */}
+                  {blogs.data.attributes.categories.data.map((category) => (
+                    <div className="HastagCategory" key={category.id}>
+                      #{category.attributes.title}
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -136,6 +133,7 @@ const BlogsDetails = ({ blogs, slider }) => {
                 {blogs.data.attributes.description}
               </ReactMarkdown>
             </div>
+            {/* batas */}
             <div className="col-lg-4">
               <UpdateBlog />
             </div>
@@ -144,18 +142,6 @@ const BlogsDetails = ({ blogs, slider }) => {
       </section>
 
       <SliderBlog {...slider} />
-
-      {/* <section className="blog-content-new mt-10 mb-10">
-        <div className="article-body size-container">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-2"></div>
-              <div className="col-lg-8"></div>
-              <div className="col-lg-2"></div>
-            </div>
-          </div>
-        </div>
-      </section> */}
     </>
   );
 };
