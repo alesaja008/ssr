@@ -1,68 +1,65 @@
-// import ReactMarkdown from "react-markdown";
-import Image from "next/image";
-import { FaAngleRight } from "react-icons/fa6";
-import { Link } from "next/link";
 import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
-import SliderBlog from "@/components/elements/AllSlider/SliderBlog";
 import { CiClock2 } from "react-icons/ci";
+import { FaAngleRight } from "react-icons/fa6";
+import Image from "next/image";
 import style from "@/pages/insight/blog/styles.module.css";
-
+import UpdateRecap from "@/components/UpdateContent/recapTerbaru";
+import SliderEventRecap from "@/components/elements/AllSlider/SliderEventRecap";
 import Head from "next/head";
-import UpdateBlog from "@/components/UpdateContent/blogTerbaru";
 
 export async function getServerSideProps(context) {
   const { params } = context;
   const id = params.id[0];
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/blogs/${id}?populate=*`
+    `${process.env.NEXT_PUBLIC_API_URL}/recaps/${id}?populate=*`
   );
   const data = await res.json();
 
-  const reqFeatured = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`
+  const recapRes = await fetch(
+    process.env.NEXT_PUBLIC_API_URL + "/recaps?populate=*"
   );
-  const sliderBlog = await reqFeatured.json();
+  const sliderRecap = await recapRes.json();
 
-  // batas update blogs
-  const latestBlogsRes = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`
+  // batas update recaps
+  const latestRecapsRes = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/recaps?populate=*`
   );
-  const latestBlogsData = await latestBlogsRes.json();
+  const latestRecapsData = await latestRecapsRes.json();
 
   return {
     props: {
-      blogs: data,
-      slider: sliderBlog,
-      latestBlogsData,
+      recaps: data,
+      slider: sliderRecap,
+      latestRecapsData,
     },
   };
 }
 
-const BlogsDetails = ({ blogs, slider, latestBlogsData }) => {
+const RecapDetails = ({ recaps, slider, latestRecapsData }) => {
   const router = useRouter();
   const { id } = router.query;
+  console.log(recaps);
 
   const baseUrl = "https://testrapi.bintangsempurna.co.id/";
 
   return (
     <>
       <Head>
-        <title>{blogs.data.attributes.title}</title>
-        <meta name="title" content={blogs.data.attributes.title} />
+        <title>{recaps.data.attributes.title}</title>
+        <meta name="title" content={recaps.data.attributes.title} />
         <meta
           name="description"
-          content={blogs.data.attributes.SEO.description}
+          content={recaps.data.attributes.SEO.description}
         />
         <meta
           property="og:image"
-          content={`${baseUrl}${blogs.data.attributes.image.data.attributes.formats.small.url.substring(
+          content={`${baseUrl}${recaps.data.attributes.image.data.attributes.formats.small.url.substring(
             1
           )}`}
           id="og-image"
         ></meta>
       </Head>
-
       <section className="py-20">
         <div className="container">
           <div className="row">
@@ -70,18 +67,18 @@ const BlogsDetails = ({ blogs, slider, latestBlogsData }) => {
               <div className="the_breadcrumb_conatiner_page">
                 <div className="the_breadcrumb">
                   <div className="breadcrumbs">
-                    insight <FaAngleRight />
+                    events <FaAngleRight />
                     &nbsp;
                     <a
-                      onClick={() => navigate("/insight/blog")}
+                      onClick={() => navigate("/events/event-recap")}
                       style={{
                         cursor: "pointer",
                         fontSize: "12px",
                       }}
                     >
-                      Blog{" "}
+                      events recap{" "}
                     </a>
-                    <FaAngleRight /> {blogs.data.attributes.title}
+                    <FaAngleRight /> {recaps.data.attributes.title}
                   </div>
                 </div>
               </div>
@@ -89,7 +86,7 @@ const BlogsDetails = ({ blogs, slider, latestBlogsData }) => {
               <div className="d-flex flex-row ">
                 <div className="p-2 text-Published">
                   <h2 className="artikel-detail_tittle text-left">
-                    {blogs.data.attributes.title}
+                    {recaps.data.attributes.title}
                   </h2>
                 </div>
               </div>
@@ -100,7 +97,7 @@ const BlogsDetails = ({ blogs, slider, latestBlogsData }) => {
                     {" "}
                     &nbsp; <CiClock2 /> &nbsp;
                     {new Date(
-                      blogs.data.attributes.createdAt
+                      recaps.data.attributes.createdAt
                     ).toLocaleDateString("id-ID", {
                       year: "numeric",
                       month: "long",
@@ -113,11 +110,9 @@ const BlogsDetails = ({ blogs, slider, latestBlogsData }) => {
 
               <div className="row mb-3">
                 <div className="d-flex align-content-stretch flex-wrap">
-                  {blogs.data.attributes.categories.data.map((category) => (
-                    <div className={category.attributes.slug} key={category.id}>
-                      #{category.attributes.title}
-                    </div>
-                  ))}
+                  <div className="HastagCategory">
+                    {recaps.data.attributes.id_categories}
+                  </div>
                 </div>
               </div>
 
@@ -128,29 +123,28 @@ const BlogsDetails = ({ blogs, slider, latestBlogsData }) => {
               <div className="artikel-detail_hero">
                 <Image
                   className="content-img-detail"
-                  src={`${baseUrl}${blogs.data.attributes.image.data.attributes.formats.small.url.substring(
+                  src={`${baseUrl}${recaps.data.attributes.image.data.attributes.formats.small.url.substring(
                     1
                   )}`}
                   loading="lazy"
-                  alt={blogs.data.alt}
+                  alt={recaps.data.alt}
                   width={400}
                   height={400}
                 />
               </div>
               <ReactMarkdown className="title___details text-left py-5">
-                {blogs.data.attributes.description}
+                {recaps.data.attributes.description}
               </ReactMarkdown>
             </div>
-            {/* batas */}
             <div className="col-lg-4">
-              <UpdateBlog latestBlogs={latestBlogsData.data} />
+              <UpdateRecap latestRecaps={latestRecapsData.data} />
             </div>
           </div>
         </div>
       </section>
-      <SliderBlog {...slider} />
+      <SliderEventRecap {...slider} />
     </>
   );
 };
 
-export default BlogsDetails;
+export default RecapDetails;

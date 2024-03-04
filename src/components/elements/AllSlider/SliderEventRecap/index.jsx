@@ -16,8 +16,8 @@ import { Container, Card } from "react-bootstrap";
 
 import styles from "@/components/elements/styles/style.module.css";
 
-const SliderEventRecap = ({ recaps }) => {
-  const { data } = recaps;
+const SliderEventRecap = (props) => {
+  const { data } = props;
 
   const baseUrl = "https://testrapi.bintangsempurna.co.id/";
 
@@ -26,14 +26,14 @@ const SliderEventRecap = ({ recaps }) => {
     const slicedEntities = sortedEntities.slice(0, 10);
 
     return (
-      data &&
+      slicedEntities &&
       slicedEntities.map((data) => {
         return (
           <SwiperSlide key={data.id}>
             <Card
               as={Link}
               className={styles.classCard}
-              href={`/events/event-recap/${data.id}`}
+              href={`/events/event-recap/${data.id}/${data.attributes.slug}`}
               style={{ cursor: "pointer" }}
             >
               <Image
@@ -48,7 +48,7 @@ const SliderEventRecap = ({ recaps }) => {
               />
 
               <Card.Body>
-                <span className={styles.categoryIconBlog}>
+                <span className={styles.categoryIconArtikel}>
                   {data.attributes.id_categories}
                 </span>
                 <Card.Title className="mt-3 text-left">

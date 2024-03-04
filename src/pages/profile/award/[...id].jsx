@@ -1,45 +1,28 @@
-// import ReactMarkdown from "react-markdown";
+import React from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import { FaAngleRight } from "react-icons/fa6";
-import { Link } from "next/link";
-import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
-import SliderBlog from "@/components/elements/AllSlider/SliderBlog";
 import { CiClock2 } from "react-icons/ci";
 import style from "@/pages/insight/blog/styles.module.css";
-
-import Head from "next/head";
-import UpdateBlog from "@/components/UpdateContent/blogTerbaru";
+import UpdateAward from "@/components/UpdateContent/awardTerbaru";
 
 export async function getServerSideProps(context) {
   const { params } = context;
   const id = params.id[0];
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/blogs/${id}?populate=*`
+    `${process.env.NEXT_PUBLIC_API_URL}/awards/${id}?populate=*`
   );
   const data = await res.json();
 
-  const reqFeatured = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`
-  );
-  const sliderBlog = await reqFeatured.json();
-
-  // batas update blogs
-  const latestBlogsRes = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`
-  );
-  const latestBlogsData = await latestBlogsRes.json();
-
   return {
     props: {
-      blogs: data,
-      slider: sliderBlog,
-      latestBlogsData,
+      awards: data,
     },
   };
 }
 
-const BlogsDetails = ({ blogs, slider, latestBlogsData }) => {
+const AwardDetails = ({ awards }) => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -47,22 +30,6 @@ const BlogsDetails = ({ blogs, slider, latestBlogsData }) => {
 
   return (
     <>
-      <Head>
-        <title>{blogs.data.attributes.title}</title>
-        <meta name="title" content={blogs.data.attributes.title} />
-        <meta
-          name="description"
-          content={blogs.data.attributes.SEO.description}
-        />
-        <meta
-          property="og:image"
-          content={`${baseUrl}${blogs.data.attributes.image.data.attributes.formats.small.url.substring(
-            1
-          )}`}
-          id="og-image"
-        ></meta>
-      </Head>
-
       <section className="py-20">
         <div className="container">
           <div className="row">
@@ -81,7 +48,7 @@ const BlogsDetails = ({ blogs, slider, latestBlogsData }) => {
                     >
                       Blog{" "}
                     </a>
-                    <FaAngleRight /> {blogs.data.attributes.title}
+                    <FaAngleRight /> {awards.data.attributes.title}
                   </div>
                 </div>
               </div>
@@ -89,7 +56,7 @@ const BlogsDetails = ({ blogs, slider, latestBlogsData }) => {
               <div className="d-flex flex-row ">
                 <div className="p-2 text-Published">
                   <h2 className="artikel-detail_tittle text-left">
-                    {blogs.data.attributes.title}
+                    {awards.data.attributes.title}
                   </h2>
                 </div>
               </div>
@@ -100,7 +67,7 @@ const BlogsDetails = ({ blogs, slider, latestBlogsData }) => {
                     {" "}
                     &nbsp; <CiClock2 /> &nbsp;
                     {new Date(
-                      blogs.data.attributes.createdAt
+                      awards.data.attributes.createdAt
                     ).toLocaleDateString("id-ID", {
                       year: "numeric",
                       month: "long",
@@ -113,11 +80,14 @@ const BlogsDetails = ({ blogs, slider, latestBlogsData }) => {
 
               <div className="row mb-3">
                 <div className="d-flex align-content-stretch flex-wrap">
-                  {blogs.data.attributes.categories.data.map((category) => (
+                  {/* {awards.data.attributes.categories.data.map((category) => (
                     <div className={category.attributes.slug} key={category.id}>
                       #{category.attributes.title}
                     </div>
-                  ))}
+                  ))} */}
+                  <div className="HastagCategory">
+                    {awards.data.attributes.mode.data.attributes.title}
+                  </div>
                 </div>
               </div>
 
@@ -128,29 +98,28 @@ const BlogsDetails = ({ blogs, slider, latestBlogsData }) => {
               <div className="artikel-detail_hero">
                 <Image
                   className="content-img-detail"
-                  src={`${baseUrl}${blogs.data.attributes.image.data.attributes.formats.small.url.substring(
+                  src={`${baseUrl}${awards.data.attributes.image.data.attributes.formats.small.url.substring(
                     1
                   )}`}
                   loading="lazy"
-                  alt={blogs.data.alt}
+                  alt={awards.data.alt}
                   width={400}
                   height={400}
                 />
               </div>
               <ReactMarkdown className="title___details text-left py-5">
-                {blogs.data.attributes.description}
+                {awards.data.attributes.description}
               </ReactMarkdown>
             </div>
             {/* batas */}
             <div className="col-lg-4">
-              <UpdateBlog latestBlogs={latestBlogsData.data} />
+              <UpdateAward />
             </div>
           </div>
         </div>
       </section>
-      <SliderBlog {...slider} />
     </>
   );
 };
 
-export default BlogsDetails;
+export default AwardDetails;

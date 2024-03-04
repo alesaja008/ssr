@@ -30,7 +30,7 @@ const SliderAward = ({ awards }) => {
           <Card
             as={Link}
             className={styles.classCard}
-            href={data.attributes.slug}
+            href={`/profile/award/${data.id}/${data.attributes.slug}`}
             style={{ cursor: "pointer" }}
           >
             <Image

@@ -97,7 +97,7 @@ export default function Home({
         <SliderAward awards={awards} />
         <MemberApps />
         <SliderTestimonial testimoni={testimoni} />
-        <SliderEventRecap recaps={recaps} />
+        <SliderEventRecap {...recaps} />
         <SliderBlog {...blogs} />
       </div>
     </>

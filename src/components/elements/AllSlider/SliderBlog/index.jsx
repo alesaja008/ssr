@@ -19,7 +19,7 @@ const SliderBlog = (props) => {
     const sortedEntities = data.slice().sort((a, b) => b.id - a.id);
     const slicedEntities = sortedEntities.slice(5, 10);
     return (
-      data &&
+      slicedEntities &&
       slicedEntities.map((data) => {
         return (
           <SwiperSlide key={data.id}>
