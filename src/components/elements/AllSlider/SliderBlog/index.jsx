@@ -16,9 +16,11 @@ const SliderBlog = (props) => {
   const baseUrl = "https://testrapi.bintangsempurna.co.id/";
 
   const renderBlog = () => {
+    const sortedEntities = data.slice().sort((a, b) => b.id - a.id);
+    const slicedEntities = sortedEntities.slice(5, 10);
     return (
       data &&
-      data.map((data) => {
+      slicedEntities.map((data) => {
         return (
           <SwiperSlide key={data.id}>
             <Card

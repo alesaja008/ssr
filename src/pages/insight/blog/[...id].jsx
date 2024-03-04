@@ -24,15 +24,22 @@ export async function getServerSideProps(context) {
   );
   const sliderBlog = await reqFeatured.json();
 
+  // batas update
+  const latestBlogsRes = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`
+  );
+  const latestBlogsData = await latestBlogsRes.json();
+
   return {
     props: {
       blogs: data,
       slider: sliderBlog,
+      latestBlogsData,
     },
   };
 }
 
-const BlogsDetails = ({ blogs, slider }) => {
+const BlogsDetails = ({ blogs, slider, latestBlogsData }) => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -55,6 +62,7 @@ const BlogsDetails = ({ blogs, slider }) => {
           id="og-image"
         ></meta>
       </Head>
+
       <section className="py-20">
         <div className="container">
           <div className="row">
@@ -106,7 +114,7 @@ const BlogsDetails = ({ blogs, slider }) => {
               <div className="row mb-3">
                 <div className="d-flex align-content-stretch flex-wrap">
                   {blogs.data.attributes.categories.data.map((category) => (
-                    <div className="HastagCategory" key={category.id}>
+                    <div className={category.attributes.slug} key={category.id}>
                       #{category.attributes.title}
                     </div>
                   ))}
@@ -135,7 +143,7 @@ const BlogsDetails = ({ blogs, slider }) => {
             </div>
             {/* batas */}
             <div className="col-lg-4">
-              <UpdateBlog />
+              <UpdateBlog latestBlogs={latestBlogsData.data} />
             </div>
           </div>
         </div>

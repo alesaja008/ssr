@@ -13763,6 +13763,9 @@ button.btn-option.btn.btn-primary{
   line-height: 1.5;
   font-weight: 500;
 }
+h2.text_news {
+  color: #495057;
+}
 
 
   
@@ -13974,4 +13977,95 @@ transform-origin: top center;
 .fab-wheel img {
   width: 100%;
   height: auto;
+}
+
+.inspiration{
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 15px;
+  color: #ff5500;
+  background-color: #ff06001a;
+  cursor: pointer;
+  text-transform: uppercase;
+  word-break: break-word;
+  margin: 3px;
+}
+
+.design-ideas{
+  font-size: 12px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: #ffa700;
+    background-color: #ffcd751a;
+    cursor: pointer;
+    text-transform: uppercase;
+    word-break: break-word;
+    margin: 3px;
+}
+
+.marketing-and-promotion{
+  font-size: 12px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: #ff6000;
+    background-color: #cda8001a;
+    cursor: pointer;
+    text-transform: uppercase;
+    word-break: break-word;
+    margin: 3px;
+}
+
+.what-s-new{
+  font-size: 12px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: #25c300;
+    background-color: #00ff051a;
+    cursor: pointer;
+    text-transform: uppercase;
+    word-break: break-word;
+    margin: 3px;
+}
+
+.tips-n-trik{
+  font-size: 12px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: #00c3c5;
+    background-color: #00ffcd1a;
+    cursor: pointer;
+    text-transform: uppercase;
+    word-break: break-word;
+    margin: 3px;
+}
+
+.print-knowledge{
+  font-size: 12px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: #0096f1;
+    background-color: #00d3ff1a;
+    cursor: pointer;
+    text-transform: uppercase;
+    word-break: break-word;
+    margin: 3px;
+}
+
+.news{
+  font-size: 12px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: #b700ff;
+    background-color: #b66aff1a;
+    cursor: pointer;
+    text-transform: uppercase;
+    word-break: break-word;
+    margin: 3px;
 }
